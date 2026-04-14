@@ -1,0 +1,275 @@
+{
+  "metadata": {
+    "id": "example-transformer-001",
+    "artifact_type": "experiment_result",
+    "title": "Attention Is All You Need - Structured Artifact",
+    "description": "Machine-readable representation of the Transformer paper's experimental results, claims, and conditions.",
+    "version": "1.0.0",
+    "tags": ["transformer", "attention", "machine-translation", "NLP"],
+    "domain": "machine_learning",
+    "schema_version": "0.1.0",
+    "provenance": [
+      {
+        "source_type": "paper",
+        "source_id": "arXiv:1706.03762",
+        "source_title": "Attention Is All You Need",
+        "extraction_method": "manual-structured-entry",
+        "confidence": 0.95
+      }
+    ]
+  },
+  "setup": {
+    "task": "Machine Translation (English-German, English-French)",
+    "methodology": "Encoder-decoder Transformer architecture evaluated on standard WMT 2014 benchmarks",
+    "datasets": [
+      {
+        "name": "WMT 2014 English-German",
+        "size": 4500000,
+        "splits": {"train": 4500000},
+        "preprocessing": ["BPE tokenization", "shared source-target vocabulary of ~37000 tokens"],
+        "characteristics": {"language_pair": "en-de", "domain": "news"}
+      },
+      {
+        "name": "WMT 2014 English-French",
+        "size": 36000000,
+        "splits": {"train": 36000000},
+        "preprocessing": ["BPE tokenization", "32000 word-piece vocabulary"],
+        "characteristics": {"language_pair": "en-fr", "domain": "news"}
+      }
+    ],
+    "hyperparameters": [
+      {"name": "d_model", "value": 512, "param_type": "discrete", "is_tuned": false},
+      {"name": "d_ff", "value": 2048, "param_type": "discrete", "is_tuned": false},
+      {"name": "h (attention heads)", "value": 8, "param_type": "discrete", "is_tuned": true,
+       "search_range": {"values": [1, 8, 16, 32, 256]}},
+      {"name": "N (layers)", "value": 6, "param_type": "discrete", "is_tuned": false},
+      {"name": "P_drop", "value": 0.1, "param_type": "continuous", "is_tuned": true,
+       "search_range": {"values": [0.0, 0.1, 0.2]}},
+      {"name": "label_smoothing", "value": 0.1, "param_type": "continuous", "is_tuned": false}
+    ],
+    "hardware": "8 NVIDIA P100 GPUs",
+    "software_versions": {},
+    "num_runs": 1,
+    "evaluation_protocol": "BLEU score on newstest2014 test set",
+    "baselines": ["ByteNet", "GNMT+RL", "ConvS2S", "MoE"],
+    "conditions": [
+      {
+        "condition_type": "scope",
+        "description": "Results are on machine translation tasks; generalization to other tasks is demonstrated but limited",
+        "is_verified": true
+      },
+      {
+        "condition_type": "assumption",
+        "description": "Self-attention is efficient when sequence length < representation dimensionality",
+        "is_verified": true
+      },
+      {
+        "condition_type": "limitation",
+        "description": "Self-attention has O(n^2) complexity in sequence length",
+        "is_verified": true
+      }
+    ]
+  },
+  "results": [
+    {
+      "method_name": "Transformer (big)",
+      "is_proposed": true,
+      "metrics": [
+        {"name": "BLEU", "value": 28.4, "higher_is_better": true, "dataset": "WMT 2014 En-De", "split": "test"},
+        {"name": "BLEU", "value": 41.8, "higher_is_better": true, "dataset": "WMT 2014 En-Fr", "split": "test",
+         "conditions": [{"condition_type": "scope", "description": "After checkpoint averaging"}]},
+        {"name": "Training FLOPs", "value": 2.3e19, "higher_is_better": false, "unit": "FLOPs"},
+        {"name": "Training Time", "value": 3.5, "higher_is_better": false, "unit": "days"}
+      ]
+    },
+    {
+      "method_name": "Transformer (base)",
+      "is_proposed": true,
+      "metrics": [
+        {"name": "BLEU", "value": 27.3, "higher_is_better": true, "dataset": "WMT 2014 En-De", "split": "test"},
+        {"name": "Training FLOPs", "value": 3.3e18, "higher_is_better": false, "unit": "FLOPs"},
+        {"name": "Training Time", "value": 0.5, "higher_is_better": false, "unit": "days"}
+      ]
+    },
+    {
+      "method_name": "GNMT+RL",
+      "is_proposed": false,
+      "metrics": [
+        {"name": "BLEU", "value": 24.6, "higher_is_better": true, "dataset": "WMT 2014 En-De", "split": "test"},
+        {"name": "BLEU", "value": 39.92, "higher_is_better": true, "dataset": "WMT 2014 En-Fr", "split": "test"},
+        {"name": "Training FLOPs", "value": 1.4e20, "higher_is_better": false, "unit": "FLOPs"}
+      ]
+    },
+    {
+      "method_name": "ConvS2S",
+      "is_proposed": false,
+      "metrics": [
+        {"name": "BLEU", "value": 25.16, "higher_is_better": true, "dataset": "WMT 2014 En-De", "split": "test"},
+        {"name": "BLEU", "value": 40.46, "higher_is_better": true, "dataset": "WMT 2014 En-Fr", "split": "test"},
+        {"name": "Training FLOPs", "value": 1.5e20, "higher_is_better": false, "unit": "FLOPs"}
+      ]
+    },
+    {
+      "method_name": "MoE",
+      "is_proposed": false,
+      "metrics": [
+        {"name": "BLEU", "value": 26.03, "higher_is_better": true, "dataset": "WMT 2014 En-De", "split": "test"},
+        {"name": "BLEU", "value": 40.56, "higher_is_better": true, "dataset": "WMT 2014 En-Fr", "split": "test"},
+        {"name": "Training FLOPs", "value": 1.2e20, "higher_is_better": false, "unit": "FLOPs"}
+      ]
+    },
+    {
+      "method_name": "ByteNet",
+      "is_proposed": false,
+      "metrics": [
+        {"name": "BLEU", "value": 23.75, "higher_is_better": true, "dataset": "WMT 2014 En-De", "split": "test"}
+      ]
+    }
+  ],
+  "claims": [
+    {
+      "statement": "The Transformer achieves state-of-the-art BLEU scores on WMT 2014 En-De and En-Fr while requiring significantly less training compute",
+      "status": "supported",
+      "confidence": 0.95,
+      "evidence_for": [
+        {
+          "evidence_type": "quantitative",
+          "description": "Transformer (big) achieves 28.4 BLEU on En-De vs 26.36 for best ensemble baseline",
+          "strength": 0.95,
+          "data": {"metric": "BLEU", "value": 28.4, "best_baseline": 26.36, "improvement": 2.04}
+        },
+        {
+          "evidence_type": "quantitative",
+          "description": "Training cost is 2.3e19 FLOPs vs 1.2e20-1.5e20 for baselines (5-6x cheaper)",
+          "strength": 0.9,
+          "data": {"transformer_flops": 2.3e19, "baseline_range": [1.2e20, 1.5e20]}
+        }
+      ],
+      "evidence_against": [],
+      "conditions": [
+        {
+          "condition_type": "scope",
+          "description": "Claim is for machine translation specifically; generalization is not fully established"
+        }
+      ]
+    },
+    {
+      "statement": "Multi-head attention is critical for model performance",
+      "status": "supported",
+      "confidence": 0.85,
+      "evidence_for": [
+        {
+          "evidence_type": "experimental",
+          "description": "Single-head attention drops BLEU by 0.9 points; too many small heads drops by 2.1 points",
+          "strength": 0.85,
+          "data": {"single_head_drop": -0.9, "256_heads_drop": -2.1}
+        }
+      ],
+      "evidence_against": [],
+      "conditions": [
+        {
+          "condition_type": "scope",
+          "description": "Tested only on En-De translation with base model settings"
+        }
+      ]
+    },
+    {
+      "statement": "Self-attention layers are faster than recurrent layers when sequence length is smaller than representation dimensionality",
+      "status": "preliminary",
+      "confidence": 0.7,
+      "evidence_for": [
+        {
+          "evidence_type": "theoretical",
+          "description": "Complexity analysis: self-attention O(n^2 * d) vs recurrent O(n * d^2)",
+          "strength": 0.7,
+          "data": {"self_attention_complexity": "O(n^2 * d)", "recurrent_complexity": "O(n * d^2)"}
+        }
+      ],
+      "evidence_against": [],
+      "conditions": [
+        {
+          "condition_type": "precondition",
+          "description": "Sequence length n must be less than representation dimensionality d",
+          "formal_expression": "n < d"
+        }
+      ]
+    },
+    {
+      "statement": "Dropout regularization is important for Transformer performance",
+      "status": "supported",
+      "confidence": 0.8,
+      "evidence_for": [
+        {
+          "evidence_type": "experimental",
+          "description": "Removing dropout drops BLEU by 1.2 points on En-De",
+          "strength": 0.8,
+          "data": {"with_dropout": 25.8, "without_dropout": 24.6, "drop": -1.2}
+        }
+      ],
+      "evidence_against": [],
+      "conditions": []
+    }
+  ],
+  "causal_relationships": [
+    {
+      "cause": "Self-attention mechanism (no recurrence)",
+      "effect": "Massively parallel training (no sequential dependency)",
+      "strength": "strong",
+      "mechanism": "Self-attention computes all positions simultaneously, unlike RNNs which process sequentially",
+      "conditions": [],
+      "confounders": []
+    },
+    {
+      "cause": "Number of attention heads",
+      "effect": "Model performance (BLEU)",
+      "strength": "moderate",
+      "mechanism": "Multiple heads attend to different representation subspaces",
+      "conditions": [
+        {
+          "condition_type": "constraint",
+          "description": "Head dimension dk must be large enough; too many small heads hurts performance"
+        }
+      ],
+      "confounders": ["Total model parameters change with head count"]
+    }
+  ],
+  "ablation_results": [
+    {
+      "method_name": "Single head (h=1)",
+      "is_proposed": false,
+      "metrics": [{"name": "BLEU", "value": 24.9, "higher_is_better": true, "dataset": "WMT 2014 En-De", "split": "dev"}]
+    },
+    {
+      "method_name": "Too many heads (h=256, dk=2)",
+      "is_proposed": false,
+      "metrics": [{"name": "BLEU", "value": 23.7, "higher_is_better": true, "dataset": "WMT 2014 En-De", "split": "dev"}]
+    },
+    {
+      "method_name": "No dropout",
+      "is_proposed": false,
+      "metrics": [{"name": "BLEU", "value": 24.6, "higher_is_better": true, "dataset": "WMT 2014 En-De", "split": "dev"}]
+    },
+    {
+      "method_name": "Dropout 0.2",
+      "is_proposed": false,
+      "metrics": [{"name": "BLEU", "value": 25.5, "higher_is_better": true, "dataset": "WMT 2014 En-De", "split": "dev"}]
+    },
+    {
+      "method_name": "Learned positional embeddings",
+      "is_proposed": false,
+      "metrics": [{"name": "BLEU", "value": 25.7, "higher_is_better": true, "dataset": "WMT 2014 En-De", "split": "dev"}]
+    }
+  ],
+  "failure_cases": [
+    "Very long sequences (O(n^2) attention complexity)",
+    "Tasks requiring fine-grained positional information beyond sinusoidal encoding",
+    "Small datasets where the model may overfit without careful regularization"
+  ],
+  "key_findings": [
+    "The Transformer is the first sequence transduction model based entirely on attention, replacing recurrent and convolutional layers",
+    "Achieves 28.4 BLEU on WMT 2014 En-De (new SOTA) at a fraction of training cost of previous methods",
+    "Multi-head attention is critical but requires sufficient per-head dimensionality",
+    "Training parallelism from removing recurrence leads to dramatically faster training",
+    "Regularization (dropout, label smoothing) is essential for good performance"
+  ]
+}

@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual environment
+.venv/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+
+# Generated data (keep examples, ignore generated artifacts)
+data/artifact_output.json
+data/artifact_paper*.json
+data/compose_result.json
+data/diff_result.json
+data/benchmark_results.json
+data/benchmark_report.txt
+
+# uv
+uv.lock

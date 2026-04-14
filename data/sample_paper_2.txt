@@ -1,0 +1,135 @@
+Title: BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding
+Authors: Jacob Devlin, Ming-Wei Chang, Kenton Lee, Kristina Toutanova
+Year: 2019
+arXiv: 1810.04805
+
+Abstract:
+We introduce a new language representation model called BERT, which stands for Bidirectional Encoder Representations from Transformers. Unlike recent language representation models, BERT is designed to pre-train deep bidirectional representations from unlabeled text by jointly conditioning on both left and right context in all layers. As a result, the pre-trained BERT model can be fine-tuned with just one additional output layer to create state-of-the-art models for a wide range of tasks, such as question answering and language inference, without substantial task-specific architecture modifications.
+
+BERT is conceptually simple and empirically powerful. It obtains new state-of-the-art results on eleven natural language processing benchmarks, including pushing the GLUE score to 80.5% (7.7% point absolute improvement), MultiNLI accuracy to 86.7% (4.6% absolute improvement), SQuAD v1.1 question answering Test F1 to 93.2 (1.5 point absolute improvement) and SQuAD v2.0 Test F1 to 83.1 (5.1 point absolute improvement).
+
+1. Introduction
+Language model pre-training has been shown to be effective for improving many natural language processing tasks. These include sentence-level tasks such as natural language inference and paraphrasing, which aim to predict the relationships between sentences by analyzing them holistically, as well as token-level tasks such as named entity recognition and question answering, where models are required to produce fine-grained output at the token level.
+
+There are two existing strategies for applying pre-trained language representations to downstream tasks: feature-based and fine-tuning. The feature-based approach, such as ELMo, uses task-specific architectures that include the pre-trained representations as additional features. The fine-tuning approach, such as GPT, introduces minimal task-specific parameters, and is trained on the downstream tasks by simply fine-tuning all pre-trained parameters.
+
+The current techniques restrict the power of pre-trained representations, especially for the fine-tuning approaches. The major limitation is that standard language models are unidirectional, and this limits the choice of architectures that can be used during pre-training.
+
+We argue that this limitation is unnecessarily restrictive, especially for fine-tuning-based approaches. BERT alleviates the unidirectionality constraint by using a "masked language model" (MLM) pre-training objective. The masked language model randomly masks some of the tokens from the input, and the objective is to predict the original vocabulary id of the masked word based only on its context.
+
+2. BERT Model Architecture
+BERT's model architecture is a multi-layer bidirectional Transformer encoder based on the original implementation described in Vaswani et al. (2017).
+
+BERT_BASE: L=12, H=768, A=12, Total Parameters=110M
+BERT_LARGE: L=24, H=1024, A=16, Total Parameters=340M
+
+Pre-training Tasks:
+- Masked Language Model (MLM): 15% of tokens are masked. Of those, 80% replaced with [MASK], 10% with random token, 10% unchanged.
+- Next Sentence Prediction (NSP): Binary classification of whether sentence B follows sentence A.
+
+Pre-training Data: BooksCorpus (800M words) + English Wikipedia (2,500M words)
+
+3. Experiments
+
+Table 1: GLUE Test results (single model, no ensemble):
+
+MNLI-(m/mm):
+- BERT_BASE: 84.6/83.4
+- BERT_LARGE: 86.7/85.9
+- GPT: 82.1/81.4
+- ELMo: 76.4/76.1
+
+QQP (F1):
+- BERT_BASE: 71.2
+- BERT_LARGE: 72.1
+- GPT: 70.3
+- ELMo: 64.8
+
+QNLI:
+- BERT_BASE: 90.5
+- BERT_LARGE: 92.7
+- GPT: 88.1
+- ELMo: 80.5
+
+SST-2:
+- BERT_BASE: 93.5
+- BERT_LARGE: 94.9
+- GPT: 91.3
+- ELMo: 90.4
+
+CoLA (Matthew's Corr):
+- BERT_BASE: 52.1
+- BERT_LARGE: 60.5
+- GPT: 45.4
+- ELMo: 36.0
+
+STS-B (Pearson Corr):
+- BERT_BASE: 85.8
+- BERT_LARGE: 86.5
+- GPT: 80.0
+- ELMo: 73.3
+
+MRPC (F1):
+- BERT_BASE: 88.9
+- BERT_LARGE: 89.3
+- GPT: 82.3
+- ELMo: 84.4
+
+RTE:
+- BERT_BASE: 66.4
+- BERT_LARGE: 70.1
+- GPT: 56.0
+- ELMo: 58.9
+
+GLUE Average:
+- BERT_BASE: 79.6
+- BERT_LARGE: 80.5
+- GPT: 72.8
+- ELMo: 68.6
+
+SQuAD v1.1 (Test F1):
+- BERT_BASE: 88.5
+- BERT_LARGE: 93.2
+- Previous best (single): 91.7
+
+SQuAD v2.0 (Test F1):
+- BERT_BASE: 76.3
+- BERT_LARGE: 83.1
+- Previous best: 78.0
+
+Table 5: Ablation over pre-training tasks (on dev sets):
+- BERT_BASE: MNLI=84.4, MRPC=88.0, SST-2=92.7
+- No NSP: MNLI=83.9, MRPC=86.5, SST-2=92.6
+- LTR (left-to-right) & No NSP: MNLI=82.1, MRPC=77.8, SST-2=92.1
+- + BiLSTM on LTR: MNLI=82.1, MRPC=82.1, SST-2=92.1
+
+Table 6: Ablation over model size:
+- 3 layers, 768 hidden, 12 heads (parameters ~30M): MNLI=77.9
+- 6 layers, 768 hidden, 12 heads (parameters ~60M): MNLI=80.6
+- 12 layers, 768 hidden, 12 heads (BERT_BASE, 110M): MNLI=84.4
+- 24 layers, 1024 hidden, 16 heads (BERT_LARGE, 340M): MNLI=85.7
+
+4. Training Details
+Hardware: 4 Cloud TPUs for BERT_BASE (16 TPU chips), 16 Cloud TPUs for BERT_LARGE (64 TPU chips)
+Training time: BERT_BASE: 4 days, BERT_LARGE: 4 days
+Batch size: 256 sequences
+Sequence length: 128 tokens for 90% of steps, 512 tokens for remaining 10%
+Optimizer: Adam with learning rate 1e-4, β1=0.9, β2=0.999, L2 weight decay of 0.01
+Warmup: 10,000 steps
+Fine-tuning: 2-4 epochs, learning rate from {2e-5, 3e-5, 4e-5, 5e-5}
+
+5. Key Claims
+1. Bidirectional pre-training is crucial for language understanding. Left-to-right models are significantly worse.
+2. BERT achieves state-of-the-art on 11 NLP benchmarks with minimal task-specific modifications.
+3. The masked language model objective enables deep bidirectional pre-training, which was previously impossible with standard language model objectives.
+4. Model size matters: larger models consistently perform better, even for small-scale tasks.
+5. Next Sentence Prediction is beneficial for tasks requiring understanding of sentence relationships (QQP, QNLI, MNLI).
+6. Pre-trained representations reduce the need for many heavily-engineered task-specific architectures.
+7. Fine-tuning approach is simpler and achieves better results than feature-based approaches for most tasks.
+
+6. Limitations
+- The MLM pre-training creates a mismatch between pre-training and fine-tuning (the [MASK] token does not appear during fine-tuning).
+- Only 15% of tokens are predicted per training example, requiring more pre-training steps to converge.
+- BERT's maximum sequence length is limited (512 tokens).
+- Pre-training requires significant computational resources (4-16 TPUs for 4 days).
+- The NSP objective may not be the optimal approach for learning sentence relationships.

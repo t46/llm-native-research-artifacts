@@ -1,0 +1,225 @@
+{
+  "metadata": {
+    "id": "example-pretrained-nlp-001",
+    "artifact_type": "method_comparison",
+    "title": "Pre-trained Language Model Comparison: BERT vs GPT vs ELMo",
+    "description": "Structured comparison of pre-training approaches for NLP based on the BERT paper's experimental evaluation.",
+    "version": "1.0.0",
+    "tags": ["pre-training", "NLP", "language-models", "BERT", "GPT", "ELMo"],
+    "domain": "machine_learning",
+    "schema_version": "0.1.0",
+    "provenance": [
+      {
+        "source_type": "paper",
+        "source_id": "arXiv:1810.04805",
+        "source_title": "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding",
+        "extraction_method": "manual-structured-entry",
+        "confidence": 0.95
+      }
+    ]
+  },
+  "methods": [
+    {
+      "id": "bert-large",
+      "name": "BERT-Large",
+      "category": "proposed",
+      "description": "Deep bidirectional Transformer pre-trained with Masked Language Model and Next Sentence Prediction objectives",
+      "key_innovation": "Bidirectional pre-training via masked language modeling enables deep contextualization from both directions",
+      "preconditions": [
+        {
+          "condition_type": "precondition",
+          "description": "Requires large-scale unlabeled text corpus for pre-training (BooksCorpus + Wikipedia, 3.3B words)"
+        },
+        {
+          "condition_type": "precondition",
+          "description": "Requires significant compute for pre-training (16 TPUs for 4 days)"
+        },
+        {
+          "condition_type": "precondition",
+          "description": "Maximum sequence length of 512 tokens"
+        }
+      ],
+      "limitations": [
+        "Pre-train/fine-tune mismatch due to [MASK] token",
+        "Only 15% of tokens predicted per example (slow convergence)",
+        "512 token maximum sequence length",
+        "High computational cost for pre-training"
+      ],
+      "computational_cost": "16 Cloud TPUs (64 chips) for 4 days",
+      "paper_reference": "Devlin et al. 2019",
+      "year": 2019,
+      "components": ["Transformer encoder", "MLM objective", "NSP objective", "WordPiece tokenization"]
+    },
+    {
+      "id": "gpt",
+      "name": "GPT (OpenAI)",
+      "category": "baseline",
+      "description": "Left-to-right Transformer pre-trained with standard language modeling objective",
+      "key_innovation": "Fine-tuning approach for pre-trained left-to-right Transformer",
+      "preconditions": [
+        {
+          "condition_type": "precondition",
+          "description": "Requires large text corpus for pre-training"
+        }
+      ],
+      "limitations": [
+        "Unidirectional (left-to-right only) limits context understanding",
+        "Cannot jointly condition on both left and right context"
+      ],
+      "computational_cost": "Not specified in comparison",
+      "paper_reference": "Radford et al. 2018",
+      "year": 2018,
+      "components": ["Transformer decoder", "LM objective"]
+    },
+    {
+      "id": "elmo",
+      "name": "ELMo",
+      "category": "baseline",
+      "description": "Feature-based approach using concatenated left-to-right and right-to-left LSTM representations",
+      "key_innovation": "Contextual word embeddings from deep bidirectional LSTM",
+      "preconditions": [
+        {
+          "condition_type": "precondition",
+          "description": "Requires pre-trained biLM and task-specific architecture"
+        }
+      ],
+      "limitations": [
+        "Feature-based, not fine-tuned end-to-end",
+        "Bidirectionality is shallow (concatenation of separate L2R and R2L models)",
+        "Requires task-specific architecture on top"
+      ],
+      "computational_cost": "Not specified in comparison",
+      "paper_reference": "Peters et al. 2018",
+      "year": 2018,
+      "components": ["biLSTM", "character CNN", "linear combination of layers"]
+    }
+  ],
+  "dimensions": [
+    {"name": "GLUE Average", "description": "Average score across GLUE benchmark tasks", "unit": "%", "higher_is_better": true, "weight": 1.0},
+    {"name": "MNLI", "description": "Multi-Genre Natural Language Inference accuracy", "unit": "%", "higher_is_better": true, "weight": 0.8},
+    {"name": "SQuAD v1.1 F1", "description": "Stanford Question Answering Dataset v1.1 F1 score", "unit": "F1", "higher_is_better": true, "weight": 0.8},
+    {"name": "SQuAD v2.0 F1", "description": "SQuAD v2.0 with unanswerable questions", "unit": "F1", "higher_is_better": true, "weight": 0.8},
+    {"name": "Architectural Simplicity", "description": "How simple the fine-tuning process is", "unit": "qualitative", "higher_is_better": true, "weight": 0.5}
+  ],
+  "results": [
+    {
+      "dimension": {"name": "GLUE Average", "higher_is_better": true},
+      "scores": [
+        {"method_id": "bert-large", "dimension_name": "GLUE Average", "value": 80.5},
+        {"method_id": "gpt", "dimension_name": "GLUE Average", "value": 72.8},
+        {"method_id": "elmo", "dimension_name": "GLUE Average", "value": 68.6}
+      ],
+      "winner_id": "bert-large",
+      "statistical_significance": null,
+      "notes": "7.7 point improvement over previous SOTA"
+    },
+    {
+      "dimension": {"name": "MNLI", "higher_is_better": true},
+      "scores": [
+        {"method_id": "bert-large", "dimension_name": "MNLI", "value": 86.7},
+        {"method_id": "gpt", "dimension_name": "MNLI", "value": 82.1},
+        {"method_id": "elmo", "dimension_name": "MNLI", "value": 76.4}
+      ],
+      "winner_id": "bert-large"
+    },
+    {
+      "dimension": {"name": "SQuAD v1.1 F1", "higher_is_better": true},
+      "scores": [
+        {"method_id": "bert-large", "dimension_name": "SQuAD v1.1 F1", "value": 93.2}
+      ],
+      "winner_id": "bert-large",
+      "notes": "1.5 point improvement over previous SOTA (91.7)"
+    },
+    {
+      "dimension": {"name": "SQuAD v2.0 F1", "higher_is_better": true},
+      "scores": [
+        {"method_id": "bert-large", "dimension_name": "SQuAD v2.0 F1", "value": 83.1}
+      ],
+      "winner_id": "bert-large",
+      "notes": "5.1 point improvement over previous SOTA (78.0)"
+    }
+  ],
+  "claims": [
+    {
+      "statement": "Bidirectional pre-training is crucial for language understanding; left-to-right models are significantly worse",
+      "status": "supported",
+      "confidence": 0.9,
+      "evidence_for": [
+        {
+          "evidence_type": "experimental",
+          "description": "LTR model drops MNLI from 84.4 to 82.1, MRPC from 88.0 to 77.8",
+          "strength": 0.9,
+          "data": {"MNLI_bidirectional": 84.4, "MNLI_LTR": 82.1, "MRPC_bidirectional": 88.0, "MRPC_LTR": 77.8}
+        }
+      ],
+      "evidence_against": [],
+      "conditions": [
+        {
+          "condition_type": "scope",
+          "description": "Demonstrated on GLUE and SQuAD tasks; may differ for generation tasks"
+        }
+      ]
+    },
+    {
+      "statement": "Model size matters: larger models consistently perform better even for small-scale tasks",
+      "status": "supported",
+      "confidence": 0.85,
+      "evidence_for": [
+        {
+          "evidence_type": "experimental",
+          "description": "Scaling from 30M to 340M parameters improves MNLI from 77.9 to 85.7",
+          "strength": 0.85,
+          "data": {"30M_MNLI": 77.9, "60M_MNLI": 80.6, "110M_MNLI": 84.4, "340M_MNLI": 85.7}
+        }
+      ],
+      "evidence_against": [],
+      "conditions": [
+        {
+          "condition_type": "assumption",
+          "description": "Assumes sufficient pre-training data and compute"
+        }
+      ]
+    },
+    {
+      "statement": "Fine-tuning approach is simpler and achieves better results than feature-based approaches for most tasks",
+      "status": "supported",
+      "confidence": 0.8,
+      "evidence_for": [
+        {
+          "evidence_type": "experimental",
+          "description": "BERT fine-tuning outperforms ELMo feature-based approach on all GLUE tasks",
+          "strength": 0.85
+        }
+      ],
+      "evidence_against": [],
+      "conditions": [
+        {
+          "condition_type": "limitation",
+          "description": "Feature-based approach may be preferable when task-specific architecture is needed"
+        }
+      ]
+    }
+  ],
+  "tradeoffs": [
+    {
+      "description": "BERT requires much more compute for pre-training (16 TPUs, 4 days) but requires almost no task-specific architecture design for fine-tuning",
+      "methods_involved": ["bert-large", "elmo"],
+      "dimensions_involved": ["GLUE Average", "Architectural Simplicity"],
+      "recommendation": "Use BERT when you can afford pre-training or use pre-trained checkpoints; ELMo when you need more architectural flexibility",
+      "conditions": []
+    },
+    {
+      "description": "BERT's bidirectional pre-training achieves better understanding but cannot be directly used for text generation (unlike GPT)",
+      "methods_involved": ["bert-large", "gpt"],
+      "dimensions_involved": ["GLUE Average"],
+      "recommendation": "Use BERT for understanding tasks (NLI, QA); consider GPT-style models for generation tasks",
+      "conditions": [
+        {
+          "condition_type": "scope",
+          "description": "Generation capabilities not evaluated in the BERT paper"
+        }
+      ]
+    }
+  ],
+  "recommendation": "BERT-Large is the clear winner for natural language understanding tasks, achieving state-of-the-art on 11 benchmarks. The bidirectional pre-training paradigm is the key innovation. However, the high pre-training cost and 512 token limit are practical constraints."
+}

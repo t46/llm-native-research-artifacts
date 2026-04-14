@@ -1,0 +1,89 @@
+Title: Attention Is All You Need
+Authors: Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Łukasz Kaiser, Illia Polosukhin
+Year: 2017
+arXiv: 1706.03762
+
+Abstract:
+The dominant sequence transduction models are based on complex recurrent or convolutional neural networks that include an encoder and a decoder. The best performing models also connect the encoder and decoder through an attention mechanism. We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely. Experiments on two machine translation tasks show that these models are superior in quality while being more parallelizable and requiring significantly less time to train. Our model achieves 28.4 BLEU on the WMT 2014 English-to-German translation task, improving over the existing best results, including ensembles, by over 2 BLEU. On the WMT 2014 English-to-French translation task, our model establishes a new single-model state-of-the-art BLEU score of 41.8 after training for 3.5 days on eight GPUs, a small fraction of the training costs of the best models from the literature. We show that the Transformer generalizes well to other tasks by applying it successfully to English constituency parsing both with large and limited training data.
+
+1. Introduction
+Recurrent neural networks, long short-term memory and gated recurrent neural networks in particular, have been firmly established as state of the art approaches in sequence modeling and transduction problems such as language modeling and machine translation. Numerous efforts have since continued to push the boundaries of recurrent language models and encoder-decoder architectures.
+
+Recurrent models typically factor computation along the symbol positions of the input and output sequences. Aligning the positions to steps in computation time, they generate a sequence of hidden states ht, as a function of the previous hidden state ht−1 and the input for position t. This inherently sequential nature precludes parallelization within training examples, which becomes critical at longer sequence lengths, as memory constraints limit batching across examples.
+
+Attention mechanisms have become an integral part of compelling sequence modeling and transduction models in various tasks, allowing modeling of dependencies without regard to their distance in the input or output sequences. In all but a few cases, however, such attention mechanisms are used in conjunction with a recurrent network.
+
+In this work we propose the Transformer, a model architecture eschewing recurrence and instead relying entirely on an attention mechanism to draw global dependencies between input and output.
+
+2. Model Architecture
+The Transformer follows an encoder-decoder structure using stacked self-attention and point-wise, fully connected layers for both the encoder and decoder.
+
+Encoder: The encoder is composed of a stack of N = 6 identical layers. Each layer has two sub-layers. The first is a multi-head self-attention mechanism, and the second is a simple, position-wise fully connected feed-forward network. We employ a residual connection around each of the two sub-layers, followed by layer normalization.
+
+Decoder: The decoder is also composed of a stack of N = 6 identical layers. In addition to the two sub-layers in each encoder layer, the decoder inserts a third sub-layer, which performs multi-head attention over the output of the encoder stack.
+
+Attention: An attention function can be described as mapping a query and a set of key-value pairs to an output. We call our particular attention "Scaled Dot-Product Attention". Multi-head attention allows the model to jointly attend to information from different representation subspaces at different positions. We use h = 8 parallel attention heads.
+
+3. Training
+Training Data and Batching: We trained on the standard WMT 2014 English-German dataset consisting of about 4.5 million sentence pairs. For English-French, we used the significantly larger WMT 2014 English-French dataset consisting of about 36 million sentence pairs.
+
+Hardware and Schedule: We trained our models on one machine with 8 NVIDIA P100 GPUs. For our base models, each training step took about 0.4 seconds. We trained the base models for a total of 100,000 steps or 12 hours. For our big models, step time was 1.0 seconds. The big models were trained for 300,000 steps (3.5 days).
+
+Optimizer: We used the Adam optimizer with β1 = 0.9, β2 = 0.98 and ε = 10−9. We varied the learning rate over the course of training using a warmup schedule.
+
+Regularization: We employ residual dropout with Pdrop = 0.1. We also employ label smoothing of value εls = 0.1.
+
+4. Results
+
+Table 2: The Transformer achieves better BLEU scores than previous state-of-the-art models on the English-to-German and English-to-French newstest2014 tests at a fraction of the training cost.
+
+English-to-German (WMT 2014 newstest2014):
+- ByteNet: 23.75 BLEU
+- Deep-Att + PosUnk: 39.2 BLEU (En-Fr only)
+- GNMT+RL: 24.6 BLEU
+- ConvS2S: 25.16 BLEU
+- MoE: 26.03 BLEU
+- Deep-Att + PosUnk Ensemble: 40.4 BLEU (En-Fr only)
+- GNMT+RL Ensemble: 26.30 BLEU
+- ConvS2S Ensemble: 26.36 BLEU
+- Transformer (base model): 27.3 BLEU
+- Transformer (big): 28.4 BLEU
+
+English-to-French (WMT 2014 newstest2014):
+- GNMT+RL: 39.92 BLEU
+- ConvS2S: 40.46 BLEU
+- MoE: 40.56 BLEU
+- Deep-Att + PosUnk: 39.2 BLEU
+- GNMT+RL Ensemble: 41.16 BLEU
+- ConvS2S Ensemble: 41.29 BLEU
+- Transformer (big): 41.0 BLEU (single model, 41.8 after checkpoint averaging)
+
+Training Cost (FLOPs):
+- GNMT+RL: 1.4 × 10^20
+- ConvS2S: 1.5 × 10^20
+- MoE: 1.2 × 10^20
+- Transformer (base): 3.3 × 10^18
+- Transformer (big): 2.3 × 10^19
+
+Table 3: Variations on the Transformer architecture (ablation study on En-De):
+- Base model (h=8, dk=64, dv=64, dmodel=512, dff=2048): 25.8 BLEU (development)
+- Single head attention (h=1): 24.9 BLEU (0.9 drop)
+- Too many heads (h=256, dk=2): 23.7 BLEU (2.1 drop)
+- Reduced dk (h=8, dk=16): 24.5 BLEU (1.3 drop)
+- Bigger model (dmodel=1024, dff=4096): 26.0 BLEU (0.2 improvement)
+- Dropout 0.0: 24.6 BLEU (1.2 drop)
+- Dropout 0.2: 25.5 BLEU (0.3 drop)
+- Learned positional embeddings instead of sinusoidal: 25.7 BLEU (0.1 drop)
+
+5. Key Claims
+1. The Transformer can be trained significantly faster than architectures based on recurrent or convolutional layers. Training costs are reduced by orders of magnitude compared to previous state-of-the-art.
+2. The Transformer achieves new state-of-the-art BLEU scores on WMT 2014 English-to-German (28.4) and English-to-French (41.8) translation tasks.
+3. Self-attention layers are faster than recurrent layers when the sequence length is smaller than the representation dimensionality.
+4. Multi-head attention is critical — single-head attention drops performance by 0.9 BLEU, and too many heads with very small dk also hurts.
+5. The Transformer generalizes to other tasks: English constituency parsing achieves competitive results.
+6. Dropout regularization is important — removing it drops BLEU by 1.2 points.
+
+6. Limitations
+- Self-attention has O(n²) complexity in sequence length, making it expensive for very long sequences.
+- The paper primarily evaluates on machine translation; generalization to other tasks is shown but limited.
+- Positional encoding via sinusoidal functions may not capture all positional relationships.

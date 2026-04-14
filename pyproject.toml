@@ -1,7 +1,12 @@
 [project]
 name = "llm-native-research-artifacts"
 version = "0.1.0"
-description = "Add your description here"
+description = "LLM-native research artifacts: machine-readable scientific knowledge for AI agents"
 readme = "README.md"
 requires-python = ">=3.13"
-dependencies = []
+dependencies = [
+    "anthropic>=0.94.1",
+    "pydantic>=2.13.0",
+    "pyyaml>=6.0.3",
+    "rich>=15.0.0",
+]
