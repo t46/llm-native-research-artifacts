@@ -186,6 +186,70 @@ for the full report.
 uv run python scripts/validate_autoresearch.py
 ```
 
+## Karpathy-style Autoresearch Validation (2026-04-14)
+
+LNRA has been validated against a Karpathy-style iterative experiment loop:
+an autonomous agent running 20 CIFAR-10 experiments via autoresearch-lite,
+producing a `results.tsv` experiment log, final `train.py`, and git history.
+This is structurally very different from papers -- it is tabular experiment
+data with code, not narrative text.
+
+See [data/karpathy_artifacts/validation_report.md](data/karpathy_artifacts/validation_report.md)
+for the full report.
+
+### Adapter Design
+
+An adapter assembles the full autoresearch session (results.tsv + train.py +
+program.md + git log) into a single pseudo-paper document that the existing
+converter can process. This tests the converter's robustness on non-paper inputs.
+
+### Data
+
+| Component | Description |
+|-----------|-------------|
+| results.tsv | 21 experiments: commit, val_accuracy, memory_gb, status, description |
+| train.py | Final best model (73.99% accuracy) |
+| program.md | Agent instructions (Karpathy-style protocol) |
+| git log | 4 commits (baseline + 3 kept improvements) |
+
+### Results
+
+| Operation | Status | Details |
+|-----------|--------|---------|
+| Convert | Success | 3 results, 3 claims, 6 key findings, 2 causal relationships, 5 failure cases |
+| Query (5 questions) | 5/5 success | Confidence 0.9-0.95, all LLM-augmented |
+| Compose (with Attention artifact) | Success | 6 shared findings, 4 novel insights, 2 contradictions |
+| Diff (vs Attention artifact) | Success | 2 agreements, 2 contradictions, 5 methodology differences |
+
+### Key Findings
+
+1. **Converter handles experiment logs**: The tabular format (TSV with keep/discard/crash
+   status) was successfully converted to structured claims and results. The adapter
+   transforms iterative experiment data into a format the converter understands.
+
+2. **Query answers are accurate and grounded**: All 5 domain-specific questions (most
+   effective change, hyperparameter sensitivity, crash analysis, strategy emergence,
+   diminishing returns) received well-grounded answers with evidence and caveats.
+
+3. **Cross-domain compose works**: Composing a CIFAR-10 CNN optimization session with
+   the Attention Is All You Need artifact surfaced novel insights about iterative
+   optimization vs architectural innovation as complementary research strategies.
+
+4. **Diff detects structural differences**: The programmatic diff correctly identified
+   zero method overlap (CNN configurations vs Transformer variants), while the
+   LLM-augmented diff found meaningful methodology and paradigm differences.
+
+5. **Crash data preserved as failure cases**: The two crashes (residual connection
+   architecture error, LLM parsing error) were correctly captured as failure cases
+   in the artifact.
+
+### Validation Script
+
+```bash
+# Run the Karpathy-style validation (requires ANTHROPIC_API_KEY)
+uv run python scripts/validate_karpathy.py
+```
+
 ## Technical Details
 
 - **Python 3.13+** with `uv` for package management

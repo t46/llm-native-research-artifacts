@@ -1,0 +1,422 @@
+{
+  "metadata": {
+    "id": "bd0d94f3-325b-4dc5-9065-c1bcc4fde8ab",
+    "artifact_type": "experiment_result",
+    "title": "Autoresearch-Lite: Iterative CIFAR-10 CNN Optimization (Karpathy-style)",
+    "description": "An autonomous ML research agent iteratively optimized a CNN for CIFAR-10 classification through 20 experiments, achieving 73.99% validation accuracy from a 70.94% baseline.",
+    "version": "1.0.0",
+    "created_at": "2026-04-14T06:00:50.377396Z",
+    "updated_at": "2026-04-14T06:00:50.377407Z",
+    "provenance": [
+      {
+        "source_type": "paper",
+        "source_id": "unknown",
+        "source_title": "Autoresearch-Lite: Iterative CIFAR-10 CNN Optimization",
+        "extraction_method": "claude-structured-extraction",
+        "extraction_date": "2026-04-14T06:00:50.377434Z",
+        "confidence": 0.95,
+        "parent_artifact_ids": [],
+        "notes": null
+      }
+    ],
+    "tags": [
+      "automated_ml",
+      "hyperparameter_optimization",
+      "cnn",
+      "cifar10",
+      "iterative_search"
+    ],
+    "domain": "machine_learning",
+    "schema_version": "0.1.0"
+  },
+  "setup": {
+    "task": "CIFAR-10 image classification using CNN with iterative autonomous optimization",
+    "methodology": "Autonomous agent makes one focused change per experiment, keeping changes only if they improve validation accuracy, otherwise reverting to previous best",
+    "datasets": [
+      {
+        "name": "CIFAR-10",
+        "version": null,
+        "size": 60000,
+        "splits": {
+          "train": 50000,
+          "test": 10000
+        },
+        "preprocessing": [
+          "RandomCrop(32, padding=4)",
+          "RandomHorizontalFlip",
+          "ToTensor",
+          "Normalize((0.4914, 0.4822, 0.4465), (0.2470, 0.2435, 0.2616))"
+        ],
+        "url": null,
+        "characteristics": {
+          "image_size": "32x32",
+          "num_classes": 10,
+          "color_channels": 3
+        }
+      }
+    ],
+    "hyperparameters": [
+      {
+        "name": "batch_size",
+        "value": 128,
+        "param_type": "discrete",
+        "search_range": null,
+        "is_tuned": true
+      },
+      {
+        "name": "learning_rate",
+        "value": 0.01,
+        "param_type": "continuous",
+        "search_range": null,
+        "is_tuned": true
+      },
+      {
+        "name": "weight_decay",
+        "value": 5e-05,
+        "param_type": "continuous",
+        "search_range": null,
+        "is_tuned": true
+      },
+      {
+        "name": "num_epochs",
+        "value": 15,
+        "param_type": "discrete",
+        "search_range": null,
+        "is_tuned": true
+      },
+      {
+        "name": "optimizer",
+        "value": "sgd",
+        "param_type": "categorical",
+        "search_range": null,
+        "is_tuned": true
+      },
+      {
+        "name": "lr_scheduler",
+        "value": "cosine",
+        "param_type": "categorical",
+        "search_range": null,
+        "is_tuned": true
+      },
+      {
+        "name": "dropout",
+        "value": 0.0,
+        "param_type": "continuous",
+        "search_range": null,
+        "is_tuned": true
+      },
+      {
+        "name": "num_filters_1",
+        "value": 32,
+        "param_type": "discrete",
+        "search_range": null,
+        "is_tuned": true
+      },
+      {
+        "name": "num_filters_2",
+        "value": 64,
+        "param_type": "discrete",
+        "search_range": null,
+        "is_tuned": true
+      },
+      {
+        "name": "num_filters_3",
+        "value": 128,
+        "param_type": "discrete",
+        "search_range": null,
+        "is_tuned": true
+      },
+      {
+        "name": "fc_size",
+        "value": 256,
+        "param_type": "discrete",
+        "search_range": null,
+        "is_tuned": true
+      },
+      {
+        "name": "activation",
+        "value": "relu",
+        "param_type": "categorical",
+        "search_range": null,
+        "is_tuned": true
+      }
+    ],
+    "hardware": "GPU/MPS/CPU (device-dependent)",
+    "software_versions": {},
+    "random_seeds": [],
+    "num_runs": 21,
+    "evaluation_protocol": "Single validation accuracy measurement on CIFAR-10 test set after training",
+    "baselines": [
+      "SimpleCNN baseline"
+    ],
+    "conditions": [
+      {
+        "condition_type": "limitation",
+        "description": "60 second time budget per experiment",
+        "formal_expression": null,
+        "is_verified": true
+      },
+      {
+        "condition_type": "scope",
+        "description": "Only train.py file can be modified",
+        "formal_expression": null,
+        "is_verified": true
+      },
+      {
+        "condition_type": "assumption",
+        "description": "Single focused change per experiment",
+        "formal_expression": null,
+        "is_verified": true
+      }
+    ]
+  },
+  "results": [
+    {
+      "id": "20c2668b-90bc-4b99-922e-cef8b0b28600",
+      "method_name": "Baseline SimpleCNN",
+      "metrics": [
+        {
+          "name": "validation_accuracy",
+          "value": 0.7094,
+          "uncertainty": null,
+          "higher_is_better": true,
+          "unit": null,
+          "dataset": "CIFAR-10",
+          "split": "test",
+          "conditions": []
+        }
+      ],
+      "is_proposed": false,
+      "configuration": {}
+    },
+    {
+      "id": "dd0e967f-100e-4eab-a36a-10743f82475a",
+      "method_name": "Increased Epochs (10\u219215)",
+      "metrics": [
+        {
+          "name": "validation_accuracy",
+          "value": 0.7363,
+          "uncertainty": null,
+          "higher_is_better": true,
+          "unit": null,
+          "dataset": "CIFAR-10",
+          "split": "test",
+          "conditions": []
+        }
+      ],
+      "is_proposed": true,
+      "configuration": {}
+    },
+    {
+      "id": "51a6a6a9-a0fc-4310-8ab8-d02ada2a3884",
+      "method_name": "Reduced Weight Decay (1e-4\u21925e-5)",
+      "metrics": [
+        {
+          "name": "validation_accuracy",
+          "value": 0.7399,
+          "uncertainty": null,
+          "higher_is_better": true,
+          "unit": null,
+          "dataset": "CIFAR-10",
+          "split": "test",
+          "conditions": []
+        }
+      ],
+      "is_proposed": true,
+      "configuration": {}
+    }
+  ],
+  "claims": [
+    {
+      "id": "ff533f60-e724-4452-ab5d-8e8cfccf4dab",
+      "statement": "Autonomous iterative optimization can improve CNN performance on CIFAR-10 from 70.94% to 73.99% validation accuracy",
+      "formal_statement": null,
+      "status": "supported",
+      "evidence_for": [
+        {
+          "id": "97f2ca8d-baf3-4f65-8ca3-f34f2abf6d1d",
+          "evidence_type": "experimental",
+          "description": "21 experiments with systematic improvement from baseline to best configuration",
+          "data": {
+            "baseline": 0.7094,
+            "best": 0.7399,
+            "improvement": 0.0305
+          },
+          "uncertainty": null,
+          "conditions": [],
+          "provenance": null,
+          "strength": 0.9
+        }
+      ],
+      "evidence_against": [],
+      "conditions": [
+        {
+          "condition_type": "scope",
+          "description": "Limited to SimpleCNN architecture and 60-second time budget",
+          "formal_expression": null,
+          "is_verified": null
+        },
+        {
+          "condition_type": "limitation",
+          "description": "Only 3 out of 21 experiments resulted in improvements",
+          "formal_expression": null,
+          "is_verified": null
+        }
+      ],
+      "causal_relationships": [],
+      "related_claim_ids": [],
+      "confidence": 0.9
+    },
+    {
+      "id": "7dfe1e62-42ef-4c65-859e-d32b0cfeec44",
+      "statement": "Increasing training epochs from 10 to 15 improves validation accuracy",
+      "formal_statement": null,
+      "status": "supported",
+      "evidence_for": [
+        {
+          "id": "fad60be3-fc73-4180-bda9-9ac31afd8c87",
+          "evidence_type": "experimental",
+          "description": "Direct comparison showing improvement from 70.94% to 73.63%",
+          "data": {
+            "before": 0.7094,
+            "after": 0.7363
+          },
+          "uncertainty": null,
+          "conditions": [],
+          "provenance": null,
+          "strength": 0.8
+        }
+      ],
+      "evidence_against": [],
+      "conditions": [
+        {
+          "condition_type": "scope",
+          "description": "Within 60-second time budget constraint",
+          "formal_expression": null,
+          "is_verified": null
+        }
+      ],
+      "causal_relationships": [],
+      "related_claim_ids": [],
+      "confidence": 0.8
+    },
+    {
+      "id": "1fb5b927-f620-4979-a0be-88ada7fd227a",
+      "statement": "Reducing weight decay from 1e-4 to 5e-5 improves model performance",
+      "formal_statement": null,
+      "status": "supported",
+      "evidence_for": [
+        {
+          "id": "93a1e8d3-0a6d-4490-8ec2-0eeb3317254c",
+          "evidence_type": "experimental",
+          "description": "Improvement from 73.63% to 73.99% after weight decay reduction",
+          "data": {
+            "before": 0.7363,
+            "after": 0.7399
+          },
+          "uncertainty": null,
+          "conditions": [],
+          "provenance": null,
+          "strength": 0.7
+        }
+      ],
+      "evidence_against": [],
+      "conditions": [
+        {
+          "condition_type": "scope",
+          "description": "After already increasing epochs to 15",
+          "formal_expression": null,
+          "is_verified": null
+        }
+      ],
+      "causal_relationships": [],
+      "related_claim_ids": [],
+      "confidence": 0.7
+    }
+  ],
+  "causal_relationships": [
+    {
+      "cause": "Increased training epochs",
+      "effect": "Higher validation accuracy",
+      "strength": "moderate",
+      "mechanism": "More training time allows better convergence",
+      "conditions": [
+        {
+          "condition_type": "scope",
+          "description": "Within time budget",
+          "formal_expression": null,
+          "is_verified": null
+        },
+        {
+          "condition_type": "scope",
+          "description": "Using SGD optimizer with cosine annealing",
+          "formal_expression": null,
+          "is_verified": null
+        }
+      ],
+      "evidence_ids": [],
+      "confounders": []
+    },
+    {
+      "cause": "Reduced weight decay",
+      "effect": "Improved model fitting",
+      "strength": "weak",
+      "mechanism": "Less regularization allows model to fit training data better while maintaining generalization",
+      "conditions": [
+        {
+          "condition_type": "scope",
+          "description": "After epoch increase",
+          "formal_expression": null,
+          "is_verified": null
+        },
+        {
+          "condition_type": "scope",
+          "description": "With existing hyperparameter configuration",
+          "formal_expression": null,
+          "is_verified": null
+        }
+      ],
+      "evidence_ids": [],
+      "confounders": []
+    }
+  ],
+  "ablation_results": [
+    {
+      "id": "8c8bfd34-e9a5-4083-9af5-25b15e207e58",
+      "method_name": "Learning rate",
+      "metrics": [],
+      "is_proposed": false,
+      "configuration": {}
+    },
+    {
+      "id": "ef33a522-77b4-4c08-a8cf-5d43df5607b3",
+      "method_name": "Optimizer",
+      "metrics": [],
+      "is_proposed": false,
+      "configuration": {}
+    },
+    {
+      "id": "03bc2986-3357-4f45-8ece-1a0fc27b93f2",
+      "method_name": "Architecture modifications",
+      "metrics": [],
+      "is_proposed": false,
+      "configuration": {}
+    }
+  ],
+  "failure_cases": [
+    "Residual connections addition caused runtime crash",
+    "LLM parsing error caused experiment failure",
+    "AdamW optimizer performed significantly worse (44.47% vs 70.94%)",
+    "High learning rate (0.1) degraded performance to 69.31%",
+    "Most architectural changes did not improve over baseline"
+  ],
+  "key_findings": [
+    "Only 3 out of 21 experiments improved validation accuracy",
+    "Training time extension (epochs 10\u219215) provided largest single improvement (+2.69%)",
+    "Weight decay reduction provided additional modest improvement (+0.36%)",
+    "Most hyperparameter and architectural changes either had no effect or degraded performance",
+    "SGD with cosine annealing scheduler was more effective than AdamW for this task",
+    "Autonomous research agent achieved 3.05% absolute improvement over baseline through systematic experimentation"
+  ],
+  "raw_tables": []
+}
