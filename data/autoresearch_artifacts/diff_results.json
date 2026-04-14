@@ -1,0 +1,261 @@
+{
+  "evaluator_exp-2025-11-30__vs__evaluator_exp-2025-12-01": {
+    "artifact_a": "evaluator_exp-2025-11-30",
+    "artifact_b": "evaluator_exp-2025-12-01",
+    "summary": "Both artifacts describe the same AI Scientist-v2 system and experimental results, with identical core findings but different perspectives and emphasis. They agree on the fundamental achievement of first AI-generated paper acceptance at peer review, but differ in how they frame the system's capabilities and limitations.",
+    "agreements_count": 5,
+    "contradictions_count": 2,
+    "unique_to_a": 5,
+    "unique_to_b": 5,
+    "elapsed_s": 26.0,
+    "status": "success",
+    "full_result": {
+      "summary": "Both artifacts describe the same AI Scientist-v2 system and experimental results, with identical core findings but different perspectives and emphasis. They agree on the fundamental achievement of first AI-generated paper acceptance at peer review, but differ in how they frame the system's capabilities and limitations.",
+      "agreements": [
+        {
+          "topic": "First AI-generated paper acceptance at peer review",
+          "description": "Both confirm that one paper (Compositional Regularization) was accepted at ICLR 2025 ICBINB Workshop with scores 6, 7, 6, representing the first documented case of AI-generated research passing peer review",
+          "confidence": 0.95
+        },
+        {
+          "topic": "33.3% acceptance rate with statistical uncertainty",
+          "description": "Both report 1 out of 3 papers accepted, with similar confidence intervals acknowledging the small sample size makes statistical conclusions difficult",
+          "confidence": 0.9
+        },
+        {
+          "topic": "Template-free operation as improvement over v1",
+          "description": "Both emphasize that the system eliminates domain-specific template dependency that limited AI Scientist v1, enabling broader domain applicability",
+          "confidence": 0.9
+        },
+        {
+          "topic": "Tree search and VLM integration as key innovations",
+          "description": "Both identify the four-stage tree search methodology and vision-language model feedback as core technical contributions",
+          "confidence": 0.85
+        },
+        {
+          "topic": "Workshop-level target rather than main conference",
+          "description": "Both acknowledge this was targeted at workshop acceptance rather than main conference publication",
+          "confidence": 0.9
+        }
+      ],
+      "contradictions": [
+        {
+          "topic": "Human involvement in the process",
+          "artifact_a_claim": "Explicitly lists human selection as failure cases and limitations: 'System requires human selection of ideas (3 from ~40 generated)' and 'System requires human selection of best manuscript from multiple runs'",
+          "artifact_b_claim": "Describes system as 'autonomous' and 'end-to-end' without prominently featuring human selection as limitations",
+          "severity": "major",
+          "possible_explanation": "Artifact A takes a more critical stance on autonomy claims, while Artifact B emphasizes the system's capabilities"
+        },
+        {
+          "topic": "Evidence strength for system superiority claims",
+          "artifact_a_claim": "Rates claim about surpassing v1 as 'contested' with confidence 0.4, noting lack of direct experimental comparison",
+          "artifact_b_claim": "Rates template elimination claim as 'established' with confidence 0.9, presenting it as definitively proven",
+          "severity": "nuanced",
+          "possible_explanation": "Different interpretation of what constitutes sufficient evidence for improvement claims"
+        }
+      ],
+      "unique_to_a": [
+        "Detailed failure case analysis with specific rejection reasons",
+        "Explicit confidence intervals with numerical bounds (1.7% to 79.1%)",
+        "Ranking percentile metric (55th percentile)",
+        "Critical assessment of autonomous capability claims",
+        "Identification of confounding factors in causal relationships"
+      ],
+      "unique_to_b": [
+        "Cost analysis ($20-30 per paper)",
+        "Hardware requirements specification (NVIDIA GPU with CUDA)",
+        "Comparison to workshop baseline acceptance rates (60-70%)",
+        "Framing as 'progressive agentic tree-search methodology'",
+        "More detailed hyperparameter specifications for each stage"
+      ],
+      "complementary": [
+        "Artifact A provides more detailed statistical analysis while Artifact B adds practical considerations like cost and hardware",
+        "A offers critical evaluation of autonomy claims while B provides operational details",
+        "A focuses on experimental rigor and limitations while B emphasizes technical architecture and feasibility",
+        "Together they provide both technical validation (A) and practical deployment considerations (B)"
+      ],
+      "methodology_differences": [
+        "Artifact A reports 'num_runs': 3 while Artifact B reports 'num_runs': 1, suggesting different experimental perspectives",
+        "Different hyperparameter naming conventions (stage_1_nodes vs stage_1_iterations)",
+        "A includes baseline comparison field as empty while B explicitly lists 'AI Scientist v1' as baseline"
+      ],
+      "recommendation": "Use both artifacts together for comprehensive understanding. Artifact A provides essential critical analysis of the system's limitations and statistical rigor needed for scientific evaluation. Artifact B provides practical implementation details and cost considerations important for deployment. The contradictions highlight the need to carefully examine autonomy claims and distinguish between technical capability and true end-to-end automation.",
+      "programmatic_diff": {
+        "type_a": "ExperimentResultArtifact",
+        "type_b": "ExperimentResultArtifact",
+        "same_type": true,
+        "shared_methods": [
+          "AI Scientist-v2"
+        ],
+        "only_in_a": [],
+        "only_in_b": [],
+        "metric_differences": [],
+        "num_claims_a": 4,
+        "num_claims_b": 4
+      }
+    }
+  },
+  "evaluator_exp-2025-11-30__vs__evaluator_exp-2025-11-21": {
+    "artifact_a": "evaluator_exp-2025-11-30",
+    "artifact_b": "evaluator_exp-2025-11-21",
+    "summary": "These artifacts investigate fundamentally different aspects of automated AI research. Artifact A evaluates an end-to-end system (AI Scientist-v2) for generating complete research papers from ideas to peer-reviewed publication, achieving the first documented AI-generated paper acceptance. Artifact B analyzes a specific component of autonomous research systems - ablation planning via causal reasoning - and finds that d-separation over-prunes valid ablations, making it unsuitable for experimental design.",
+    "agreements_count": 3,
+    "contradictions_count": 0,
+    "unique_to_a": 6,
+    "unique_to_b": 6,
+    "elapsed_s": 20.1,
+    "status": "success",
+    "full_result": {
+      "summary": "These artifacts investigate fundamentally different aspects of automated AI research. Artifact A evaluates an end-to-end system (AI Scientist-v2) for generating complete research papers from ideas to peer-reviewed publication, achieving the first documented AI-generated paper acceptance. Artifact B analyzes a specific component of autonomous research systems - ablation planning via causal reasoning - and finds that d-separation over-prunes valid ablations, making it unsuitable for experimental design.",
+      "agreements": [
+        {
+          "topic": "Machine learning research automation",
+          "description": "Both artifacts work toward automating aspects of ML research processes",
+          "confidence": 0.9
+        },
+        {
+          "topic": "AI system limitations",
+          "description": "Both identify significant limitations in their respective approaches - A requires human selection at multiple stages, B shows d-separation fails for experimental design",
+          "confidence": 0.85
+        },
+        {
+          "topic": "Need for rigorous evaluation",
+          "description": "Both emphasize the importance of proper evaluation protocols for automated research systems",
+          "confidence": 0.8
+        }
+      ],
+      "contradictions": [],
+      "unique_to_a": [
+        "First documented AI-generated paper acceptance at peer-reviewed venue",
+        "End-to-end paper generation pipeline from ideas to publication",
+        "Tree-based experimentation methodology",
+        "VLM integration for figure quality improvement",
+        "33.3% success rate in peer review process",
+        "Template-free operation across ML domains"
+      ],
+      "unique_to_b": [
+        "D-separation over-prunes valid ablations (96% pruning rate, 68% false positives)",
+        "Five distinct failure modes of causal reasoning for experimental design",
+        "Structural Causal Models for ML system representation",
+        "AblationBench dataset for evaluation",
+        "Perfect precision (100%) but low recall (32%) for CausalAP",
+        "Causal independence vs experimental redundancy distinction"
+      ],
+      "complementary": [
+        "A provides proof-of-concept for full research automation while B identifies critical component limitations",
+        "A's success validates the potential of automated research systems, while B's findings help improve specific components",
+        "B's ablation planning insights could improve A's experimental design stage",
+        "A's peer review validation provides real-world testing that B lacks",
+        "Together they span system-level evaluation (A) and component-level analysis (B)"
+      ],
+      "methodology_differences": [
+        "A uses real peer review validation vs B uses expert-annotated ground truth comparison",
+        "A evaluates complete end-to-end pipeline vs B focuses on single component (ablation planning)",
+        "A has small sample size (N=3) vs B uses larger benchmark (21 real + 50 synthetic systems)",
+        "A requires human selection at multiple stages vs B is fully automated",
+        "A uses tree search for exploration vs B uses causal reasoning for planning",
+        "A targets workshop-level publication vs B targets component optimization"
+      ],
+      "recommendation": "These artifacts are highly complementary. Use A's results to demonstrate the feasibility of automated research systems and B's findings to improve the experimental design components within such systems. A shows what's possible at the system level, while B identifies critical limitations that must be addressed. Future work should integrate B's insights about the limitations of d-separation into A's experimental planning stage, potentially replacing or augmenting the tree search with better causal reasoning approaches that avoid the over-pruning problem identified in B.",
+      "programmatic_diff": {
+        "type_a": "ExperimentResultArtifact",
+        "type_b": "ExperimentResultArtifact",
+        "same_type": true,
+        "shared_methods": [],
+        "only_in_a": [
+          "AI Scientist-v2"
+        ],
+        "only_in_b": [
+          "LLM-Direct",
+          "CausalAP",
+          "Heuristic",
+          "Topological"
+        ],
+        "metric_differences": [],
+        "num_claims_a": 4,
+        "num_claims_b": 3
+      }
+    }
+  },
+  "evaluator_exp-2025-12-01__vs__evaluator_exp-2025-11-21": {
+    "artifact_a": "evaluator_exp-2025-12-01",
+    "artifact_b": "evaluator_exp-2025-11-21",
+    "summary": "These artifacts investigate two different aspects of autonomous AI research systems. Artifact A demonstrates an end-to-end system for automated research paper generation that achieved the first AI-generated paper to pass peer review. Artifact B investigates whether causal reasoning can improve ablation planning for such systems, finding that d-separation over-prunes valid ablations. They are complementary works addressing different stages of the automated research pipeline.",
+    "agreements_count": 3,
+    "contradictions_count": 0,
+    "unique_to_a": 6,
+    "unique_to_b": 6,
+    "elapsed_s": 19.0,
+    "status": "success",
+    "full_result": {
+      "summary": "These artifacts investigate two different aspects of autonomous AI research systems. Artifact A demonstrates an end-to-end system for automated research paper generation that achieved the first AI-generated paper to pass peer review. Artifact B investigates whether causal reasoning can improve ablation planning for such systems, finding that d-separation over-prunes valid ablations. They are complementary works addressing different stages of the automated research pipeline.",
+      "agreements": [
+        {
+          "topic": "Autonomous AI research systems need improvement",
+          "description": "Both artifacts acknowledge limitations in current automated research approaches and work toward improving different components",
+          "confidence": 0.8
+        },
+        {
+          "topic": "Statistical significance challenges",
+          "description": "Both studies have small sample sizes that limit statistical conclusions (n=3 for A, n=21 for B)",
+          "confidence": 0.9
+        },
+        {
+          "topic": "Machine learning domain focus",
+          "description": "Both artifacts operate within the machine learning research domain",
+          "confidence": 1.0
+        }
+      ],
+      "contradictions": [],
+      "unique_to_a": [
+        "First AI-generated paper to achieve peer review acceptance",
+        "Template-free operation enabling broader domain coverage",
+        "VLM integration for improved figure quality",
+        "Cost effectiveness at $20-30 per paper",
+        "Progressive agentic tree-search methodology",
+        "End-to-end paper generation and submission workflow"
+      ],
+      "unique_to_b": [
+        "Causal reasoning approach to ablation planning",
+        "D-separation over-pruning problem identification",
+        "Five distinct failure modes of causal methods",
+        "Structural Causal Models for experimental design",
+        "Systematic evaluation against expert-annotated ablations",
+        "Information-theoretic selection methods"
+      ],
+      "complementary": [
+        "Artifact A provides the end-to-end research generation system while B could improve its ablation study component",
+        "A demonstrates feasibility of automated research while B provides tools to make such systems more rigorous",
+        "A's tree-search exploration could benefit from B's insights about experimental design",
+        "B's ablation planning methods could be integrated into A's Stage 4 (Ablation Studies)",
+        "Together they address the full pipeline: research generation (A) and experimental validation (B)"
+      ],
+      "methodology_differences": [
+        "A uses progressive agentic tree-search vs B uses causal reasoning pipelines",
+        "A evaluates through actual peer review vs B evaluates against expert annotations",
+        "A focuses on paper generation quality vs B focuses on experimental design quality",
+        "A tests end-to-end system vs B tests specific component (ablation planning)",
+        "A uses multi-agent coordination vs B uses single causal inference pipeline"
+      ],
+      "recommendation": "These artifacts should be viewed as complementary rather than competing approaches. Artifact A demonstrates the feasibility of automated research generation, while Artifact B identifies critical flaws in causal approaches to experimental design that could improve A's ablation study component. Future work should integrate B's insights about d-separation limitations into A's Stage 4 ablation planning, while A's successful peer review achievement validates the broader goal that B's methods aim to support.",
+      "programmatic_diff": {
+        "type_a": "ExperimentResultArtifact",
+        "type_b": "ExperimentResultArtifact",
+        "same_type": true,
+        "shared_methods": [],
+        "only_in_a": [
+          "AI Scientist-v2"
+        ],
+        "only_in_b": [
+          "LLM-Direct",
+          "CausalAP",
+          "Heuristic",
+          "Topological"
+        ],
+        "metric_differences": [],
+        "num_claims_a": 4,
+        "num_claims_b": 3
+      }
+    }
+  }
+}

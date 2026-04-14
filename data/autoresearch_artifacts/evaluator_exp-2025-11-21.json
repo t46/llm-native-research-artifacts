@@ -1,0 +1,434 @@
+{
+  "metadata": {
+    "id": "08bcc579-0adb-4f10-8fa2-e7d193d5b4a1",
+    "artifact_type": "experiment_result",
+    "title": "Evaluator Exp-2025-11-21",
+    "description": "Investigates whether Level-3 causal reasoning via Structural Causal Models can improve ablation planning for autonomous AI research systems, finding that d-separation over-prunes valid ablations.",
+    "version": "1.0.0",
+    "created_at": "2026-04-14T03:02:44.103526Z",
+    "updated_at": "2026-04-14T03:02:44.103537Z",
+    "provenance": [
+      {
+        "source_type": "paper",
+        "source_id": "preprint_anonymous_2025",
+        "source_title": "Why D-Separation Fails for Ablation Planning: A Diagnostic Analysis of Causal Reasoning for Experimental Design",
+        "extraction_method": "claude-structured-extraction",
+        "extraction_date": "2026-04-14T03:02:44.103544Z",
+        "confidence": 0.95,
+        "parent_artifact_ids": [],
+        "notes": null
+      }
+    ],
+    "tags": [
+      "causal inference",
+      "ablation studies",
+      "d-separation",
+      "experimental design",
+      "autonomous AI research",
+      "structural causal models"
+    ],
+    "domain": "machine_learning",
+    "schema_version": "0.1.0"
+  },
+  "setup": {
+    "task": "Ablation planning for ML systems using causal reasoning",
+    "methodology": "Four-stage CausalAP pipeline: SCM construction, counterfactual ablation generation, information-theoretic selection, and d-separation pruning",
+    "datasets": [
+      {
+        "name": "AblationBench",
+        "version": null,
+        "size": 21,
+        "splits": {
+          "test": 21
+        },
+        "preprocessing": [
+          "expert annotation from published papers"
+        ],
+        "url": null,
+        "characteristics": {
+          "domains": [
+            "NLP",
+            "CV",
+            "RL"
+          ],
+          "expert_annotated": true
+        }
+      },
+      {
+        "name": "Synthetic SCMs",
+        "version": null,
+        "size": 50,
+        "splits": {
+          "test": 50
+        },
+        "preprocessing": [
+          "generated graphs"
+        ],
+        "url": null,
+        "characteristics": {
+          "generation_method": "not specified"
+        }
+      }
+    ],
+    "hyperparameters": [
+      {
+        "name": "K (ablation budget)",
+        "value": 10,
+        "param_type": "discrete",
+        "search_range": null,
+        "is_tuned": false
+      }
+    ],
+    "hardware": "LLM API calls (GPT-4)",
+    "software_versions": {},
+    "random_seeds": [],
+    "num_runs": 1,
+    "evaluation_protocol": "Comparison against expert-annotated ground truth ablations",
+    "baselines": [
+      "Random",
+      "Heuristic",
+      "LLM-Direct",
+      "Topological"
+    ],
+    "conditions": [
+      {
+        "condition_type": "assumption",
+        "description": "SCMs accurately represent causal structure of ML systems",
+        "formal_expression": null,
+        "is_verified": false
+      },
+      {
+        "condition_type": "limitation",
+        "description": "Limited to 21 real ML systems",
+        "formal_expression": null,
+        "is_verified": true
+      },
+      {
+        "condition_type": "limitation",
+        "description": "CausalAP-NoPruning baseline not implemented",
+        "formal_expression": null,
+        "is_verified": true
+      }
+    ]
+  },
+  "results": [
+    {
+      "id": "31a5b575-b547-4d38-9bb1-8919d949669d",
+      "method_name": "CausalAP",
+      "metrics": [
+        {
+          "name": "recall",
+          "value": 0.32,
+          "uncertainty": {
+            "uncertainty_type": "statistical",
+            "value": 0.237,
+            "lower_bound": null,
+            "upper_bound": null,
+            "confidence_level": null,
+            "description": "coefficient of variation 74%"
+          },
+          "higher_is_better": true,
+          "unit": null,
+          "dataset": "AblationBench",
+          "split": "test",
+          "conditions": []
+        },
+        {
+          "name": "precision",
+          "value": 1.0,
+          "uncertainty": null,
+          "higher_is_better": true,
+          "unit": null,
+          "dataset": "AblationBench",
+          "split": "test",
+          "conditions": []
+        },
+        {
+          "name": "f1",
+          "value": 0.49,
+          "uncertainty": null,
+          "higher_is_better": true,
+          "unit": null,
+          "dataset": "AblationBench",
+          "split": "test",
+          "conditions": []
+        },
+        {
+          "name": "predictions_per_sample",
+          "value": 1.0,
+          "uncertainty": null,
+          "higher_is_better": false,
+          "unit": null,
+          "dataset": "AblationBench",
+          "split": "test",
+          "conditions": []
+        }
+      ],
+      "is_proposed": true,
+      "configuration": {}
+    },
+    {
+      "id": "7139a2fe-f784-4236-a023-940407e89fa8",
+      "method_name": "Heuristic",
+      "metrics": [
+        {
+          "name": "recall",
+          "value": 0.992,
+          "uncertainty": null,
+          "higher_is_better": true,
+          "unit": null,
+          "dataset": "AblationBench",
+          "split": "test",
+          "conditions": []
+        },
+        {
+          "name": "precision",
+          "value": 0.784,
+          "uncertainty": null,
+          "higher_is_better": true,
+          "unit": null,
+          "dataset": "AblationBench",
+          "split": "test",
+          "conditions": []
+        },
+        {
+          "name": "f1",
+          "value": 0.877,
+          "uncertainty": null,
+          "higher_is_better": true,
+          "unit": null,
+          "dataset": "AblationBench",
+          "split": "test",
+          "conditions": []
+        }
+      ],
+      "is_proposed": false,
+      "configuration": {}
+    },
+    {
+      "id": "bcc9921a-6f83-4b09-989e-d1bb35e43319",
+      "method_name": "LLM-Direct",
+      "metrics": [
+        {
+          "name": "recall",
+          "value": 0.78,
+          "uncertainty": null,
+          "higher_is_better": true,
+          "unit": null,
+          "dataset": "AblationBench",
+          "split": "test",
+          "conditions": []
+        },
+        {
+          "name": "precision",
+          "value": 0.884,
+          "uncertainty": null,
+          "higher_is_better": true,
+          "unit": null,
+          "dataset": "AblationBench",
+          "split": "test",
+          "conditions": []
+        },
+        {
+          "name": "f1",
+          "value": 0.829,
+          "uncertainty": null,
+          "higher_is_better": true,
+          "unit": null,
+          "dataset": "AblationBench",
+          "split": "test",
+          "conditions": []
+        }
+      ],
+      "is_proposed": false,
+      "configuration": {}
+    },
+    {
+      "id": "6c5565bd-360c-4de5-9b51-bfdc23f55877",
+      "method_name": "Topological",
+      "metrics": [
+        {
+          "name": "recall",
+          "value": 0.816,
+          "uncertainty": null,
+          "higher_is_better": true,
+          "unit": null,
+          "dataset": "AblationBench",
+          "split": "test",
+          "conditions": []
+        },
+        {
+          "name": "precision",
+          "value": 0.922,
+          "uncertainty": null,
+          "higher_is_better": true,
+          "unit": null,
+          "dataset": "AblationBench",
+          "split": "test",
+          "conditions": []
+        },
+        {
+          "name": "f1",
+          "value": 0.866,
+          "uncertainty": null,
+          "higher_is_better": true,
+          "unit": null,
+          "dataset": "AblationBench",
+          "split": "test",
+          "conditions": []
+        }
+      ],
+      "is_proposed": false,
+      "configuration": {}
+    }
+  ],
+  "claims": [
+    {
+      "id": "fc8d2fc4-756c-4223-ad74-31c7ea062340",
+      "statement": "D-separation prunes 96% of candidates with 68% being valid ablations incorrectly classified as redundant",
+      "formal_statement": null,
+      "status": "supported",
+      "evidence_for": [
+        {
+          "id": "63435e35-e8a4-46f4-b111-6c27d01033f7",
+          "evidence_type": "quantitative",
+          "description": "Direct measurement on combined AblationBench and synthetic data",
+          "data": {
+            "pruning_rate": 0.96,
+            "false_positive_rate": 0.68
+          },
+          "uncertainty": null,
+          "conditions": [],
+          "provenance": null,
+          "strength": 0.9
+        }
+      ],
+      "evidence_against": [],
+      "conditions": [
+        {
+          "condition_type": "scope",
+          "description": "Limited to ML system ablation planning tasks",
+          "formal_expression": null,
+          "is_verified": null
+        }
+      ],
+      "causal_relationships": [],
+      "related_claim_ids": [],
+      "confidence": 0.95
+    },
+    {
+      "id": "6b7b9eec-0ba9-403d-b784-ef3bb00ea3f0",
+      "statement": "D-separation conflates causal independence with experimental redundancy",
+      "formal_statement": null,
+      "status": "supported",
+      "evidence_for": [
+        {
+          "id": "35178301-4f4d-42f8-ba6c-06af5d6a4b18",
+          "evidence_type": "experimental",
+          "description": "Five failure modes demonstrate systematic misclassification",
+          "data": {},
+          "uncertainty": null,
+          "conditions": [],
+          "provenance": null,
+          "strength": 0.85
+        },
+        {
+          "id": "8b4773b2-4c83-43b7-b037-f6d34152ef54",
+          "evidence_type": "quantitative",
+          "description": "Sibling component counterexample shows theoretical mismatch",
+          "data": {},
+          "uncertainty": null,
+          "conditions": [],
+          "provenance": null,
+          "strength": 0.9
+        }
+      ],
+      "evidence_against": [],
+      "conditions": [],
+      "causal_relationships": [],
+      "related_claim_ids": [],
+      "confidence": 0.9
+    },
+    {
+      "id": "46404e9a-8d0f-477d-b896-38f0fb7980ea",
+      "statement": "CausalAP without d-separation would achieve 55-65% recall",
+      "formal_statement": null,
+      "status": "preliminary",
+      "evidence_for": [
+        {
+          "id": "e2f30915-0b0f-450c-b317-5a01d7ab07bb",
+          "evidence_type": "observational",
+          "description": "Analytical estimation based on observed patterns",
+          "data": {},
+          "uncertainty": null,
+          "conditions": [],
+          "provenance": null,
+          "strength": 0.3
+        }
+      ],
+      "evidence_against": [],
+      "conditions": [
+        {
+          "condition_type": "limitation",
+          "description": "Not experimentally validated",
+          "formal_expression": null,
+          "is_verified": null
+        }
+      ],
+      "causal_relationships": [],
+      "related_claim_ids": [],
+      "confidence": 0.5
+    }
+  ],
+  "causal_relationships": [
+    {
+      "cause": "d-separation pruning",
+      "effect": "low recall (32%)",
+      "strength": "strong",
+      "mechanism": "Over-pruning valid ablations due to confusing causal independence with experimental redundancy",
+      "conditions": [
+        {
+          "condition_type": "scope",
+          "description": "SCM construction accuracy",
+          "formal_expression": null,
+          "is_verified": null
+        },
+        {
+          "condition_type": "scope",
+          "description": "CIG ranking effectiveness",
+          "formal_expression": null,
+          "is_verified": null
+        }
+      ],
+      "evidence_ids": [],
+      "confounders": [
+        "SCM construction errors",
+        "CIG formula appropriateness"
+      ]
+    }
+  ],
+  "ablation_results": [
+    {
+      "id": "ecb1a28a-4bda-4fe9-9790-8332c8a55c72",
+      "method_name": "unnamed_ablation",
+      "metrics": [],
+      "is_proposed": false,
+      "configuration": {}
+    }
+  ],
+  "failure_cases": [
+    "Mediator Blocking (33% of failures): Pruning ablations of mediating components",
+    "Bottleneck Blocking (27% of failures): Pruning critical bottleneck components",
+    "Sibling Independence (20% of failures): Pruning causally independent but experimentally valuable components",
+    "Terminal Node Blocking (13% of failures): Pruning leaf components that affect outcomes",
+    "Downstream Selection Bias (7% of failures): Pruning based on irrelevant downstream dependencies"
+  ],
+  "key_findings": [
+    "D-separation is inappropriate for experimental design tasks",
+    "96% of ablation candidates are pruned by d-separation with 68% false positive rate",
+    "Causal independence does not imply experimental redundancy",
+    "Five distinct failure modes explain all observed d-separation failures",
+    "Perfect precision (100%) demonstrates other CausalAP components work correctly"
+  ],
+  "raw_tables": []
+}

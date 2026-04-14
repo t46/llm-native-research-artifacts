@@ -1,0 +1,398 @@
+{
+  "metadata": {
+    "id": "8191f9b3-9ba3-4453-a17d-fd7b9935bd96",
+    "artifact_type": "experiment_result",
+    "title": "Vanilla Autoresearch",
+    "description": "\u30c8\u30c3\u30d7\u30ab\u30f3\u30d5\u30a1\u30ec\u30f3\u30b9\u63a1\u629e\u30ec\u30d9\u30eb\u306e\u7814\u7a76\u3092\u5b8c\u5168\u81ea\u5f8b\u7684\u306b\u884c\u3046AI\u30b7\u30b9\u30c6\u30e0\u306e\u69cb\u7bc9\u3068\u8a55\u4fa1",
+    "version": "1.0.0",
+    "created_at": "2026-04-14T03:07:17.247721Z",
+    "updated_at": "2026-04-14T03:07:17.247726Z",
+    "provenance": [
+      {
+        "source_type": "derived",
+        "source_id": "unknown",
+        "source_title": "\u81ea\u5f8bML\u7814\u7a76\u30a8\u30fc\u30b8\u30a7\u30f3\u30c8\u958b\u767a\u30ec\u30dd\u30fc\u30c8",
+        "extraction_method": "claude-structured-extraction",
+        "extraction_date": "2026-04-14T03:07:17.247740Z",
+        "confidence": 0.95,
+        "parent_artifact_ids": [],
+        "notes": null
+      }
+    ],
+    "tags": [
+      "autonomous_research",
+      "multi_agent_system",
+      "machine_learning",
+      "research_automation",
+      "ai_agent"
+    ],
+    "domain": "machine_learning",
+    "schema_version": "0.1.0"
+  },
+  "setup": {
+    "task": "Building an autonomous AI system capable of conducting ML research at top-tier conference level (NeurIPS, ICML, ICLR)",
+    "methodology": "Multi-agent system with hierarchical architecture including Scientist, Engineer, Critic, Writer agents orchestrated by Research Director",
+    "datasets": [
+      {
+        "name": "arXiv papers",
+        "version": null,
+        "size": null,
+        "splits": {},
+        "preprocessing": [
+          "literature survey",
+          "gap identification"
+        ],
+        "url": null,
+        "characteristics": {
+          "domain": "machine learning efficiency"
+        }
+      }
+    ],
+    "hyperparameters": [
+      {
+        "name": "max_api_calls",
+        "value": "25",
+        "param_type": "discrete",
+        "search_range": null,
+        "is_tuned": false
+      },
+      {
+        "name": "critique_threshold",
+        "value": "adjustable",
+        "param_type": "continuous",
+        "search_range": null,
+        "is_tuned": true
+      },
+      {
+        "name": "max_iterations",
+        "value": "variable",
+        "param_type": "discrete",
+        "search_range": null,
+        "is_tuned": false
+      }
+    ],
+    "hardware": "Apple Silicon (MLX), CPU-based inference",
+    "software_versions": {},
+    "random_seeds": [],
+    "num_runs": 1,
+    "evaluation_protocol": "Component-wise testing (minimal tests) and full workflow execution",
+    "baselines": [],
+    "conditions": [
+      {
+        "condition_type": "limitation",
+        "description": "API budget constraints limiting number of LLM calls",
+        "formal_expression": null,
+        "is_verified": true
+      },
+      {
+        "condition_type": "assumption",
+        "description": "LLMs can generate novel research ideas through strategic prompting",
+        "formal_expression": null,
+        "is_verified": false
+      },
+      {
+        "condition_type": "scope",
+        "description": "Focus on LLM efficiency research domain",
+        "formal_expression": null,
+        "is_verified": true
+      }
+    ]
+  },
+  "results": [
+    {
+      "id": "5061ec20-d6be-4ef2-97dc-82389c905ec0",
+      "method_name": "Autonomous Research Agent System",
+      "metrics": [
+        {
+          "name": "component_tests_passed",
+          "value": 4.0,
+          "uncertainty": null,
+          "higher_is_better": true,
+          "unit": null,
+          "dataset": "minimal_test_suite",
+          "split": "test",
+          "conditions": []
+        },
+        {
+          "name": "hypotheses_generated",
+          "value": 6.0,
+          "uncertainty": null,
+          "higher_is_better": true,
+          "unit": null,
+          "dataset": "full_workflow",
+          "split": "test",
+          "conditions": []
+        },
+        {
+          "name": "hypotheses_with_fatal_flaws",
+          "value": 6.0,
+          "uncertainty": null,
+          "higher_is_better": false,
+          "unit": null,
+          "dataset": "full_workflow",
+          "split": "test",
+          "conditions": []
+        },
+        {
+          "name": "papers_surveyed",
+          "value": 0.0,
+          "uncertainty": null,
+          "higher_is_better": true,
+          "unit": null,
+          "dataset": "full_workflow",
+          "split": "test",
+          "conditions": []
+        },
+        {
+          "name": "api_calls_used",
+          "value": 14.0,
+          "uncertainty": null,
+          "higher_is_better": false,
+          "unit": null,
+          "dataset": "full_workflow",
+          "split": "test",
+          "conditions": []
+        },
+        {
+          "name": "code_lines_implemented",
+          "value": 3300.0,
+          "uncertainty": null,
+          "higher_is_better": true,
+          "unit": null,
+          "dataset": "system_implementation",
+          "split": "development",
+          "conditions": []
+        }
+      ],
+      "is_proposed": true,
+      "configuration": {}
+    }
+  ],
+  "claims": [
+    {
+      "id": "9fe1a8a8-80f4-4f37-b7d1-1e94d9fefeea",
+      "statement": "Multi-agent systems can automate the complete research process from literature survey to paper writing",
+      "formal_statement": null,
+      "status": "preliminary",
+      "evidence_for": [
+        {
+          "id": "d925a971-e279-4325-9065-0c41805d5c02",
+          "evidence_type": "experimental",
+          "description": "System successfully generated research hypotheses, performed critiques, and wrote abstracts",
+          "data": {
+            "component_tests": "all_passed",
+            "abstract_generated": true
+          },
+          "uncertainty": null,
+          "conditions": [],
+          "provenance": null,
+          "strength": 0.7
+        }
+      ],
+      "evidence_against": [
+        {
+          "id": "0766944e-0a01-4aa4-8c87-fc4f2e696934",
+          "evidence_type": "experimental",
+          "description": "All generated hypotheses were rejected as having fatal flaws",
+          "data": {
+            "fatal_flaw_rate": 1.0,
+            "hypotheses_ready": 0
+          },
+          "uncertainty": null,
+          "conditions": [],
+          "provenance": null,
+          "strength": 0.8
+        }
+      ],
+      "conditions": [
+        {
+          "condition_type": "limitation",
+          "description": "Limited to specific research domains and requires significant API budget",
+          "formal_expression": null,
+          "is_verified": null
+        }
+      ],
+      "causal_relationships": [],
+      "related_claim_ids": [],
+      "confidence": 0.6
+    },
+    {
+      "id": "2672165e-eb91-4b54-9c28-6e984cad6540",
+      "statement": "Seven explicit creativity strategies can generate novel research ideas",
+      "formal_statement": null,
+      "status": "preliminary",
+      "evidence_for": [
+        {
+          "id": "5a9f0fba-7d27-4da3-a09a-3a97ebd855c0",
+          "evidence_type": "experimental",
+          "description": "System generated 6 distinct hypotheses using combination, constraint relaxation, and contrarian strategies",
+          "data": {
+            "strategies_used": 3,
+            "hypotheses_generated": 6
+          },
+          "uncertainty": null,
+          "conditions": [],
+          "provenance": null,
+          "strength": 0.6
+        }
+      ],
+      "evidence_against": [
+        {
+          "id": "133c9883-790a-4974-a4e3-b6dbd4ad8160",
+          "evidence_type": "experimental",
+          "description": "Quality assessment found all hypotheses had fatal flaws despite strategic generation",
+          "data": {
+            "quality_pass_rate": 0.0
+          },
+          "uncertainty": null,
+          "conditions": [],
+          "provenance": null,
+          "strength": 0.9
+        }
+      ],
+      "conditions": [
+        {
+          "condition_type": "scope",
+          "description": "Limited to LLM efficiency research domain",
+          "formal_expression": null,
+          "is_verified": null
+        }
+      ],
+      "causal_relationships": [],
+      "related_claim_ids": [],
+      "confidence": 0.5
+    },
+    {
+      "id": "2a3b37ba-07cc-44e6-b951-1a2bd6a84ba9",
+      "statement": "Iterative refinement through critique can improve research hypothesis quality",
+      "formal_statement": null,
+      "status": "contested",
+      "evidence_for": [
+        {
+          "id": "d82ac441-2b39-461f-a3f8-82a6bba12480",
+          "evidence_type": "experimental",
+          "description": "System implements critic agent with 4 evaluation dimensions (novelty, soundness, significance, testability)",
+          "data": {
+            "critique_dimensions": 4,
+            "implemented": true
+          },
+          "uncertainty": null,
+          "conditions": [],
+          "provenance": null,
+          "strength": 0.4
+        }
+      ],
+      "evidence_against": [
+        {
+          "id": "6dcc73eb-e16d-499a-b48e-80b3869cc202",
+          "evidence_type": "experimental",
+          "description": "No hypotheses passed the refinement process despite iterative improvement attempts",
+          "data": {
+            "final_ready_hypotheses": 0,
+            "refinement_cycles": "multiple"
+          },
+          "uncertainty": null,
+          "conditions": [],
+          "provenance": null,
+          "strength": 0.9
+        }
+      ],
+      "conditions": [
+        {
+          "condition_type": "limitation",
+          "description": "Critique thresholds may be too strict for early-stage research ideas",
+          "formal_expression": null,
+          "is_verified": null
+        }
+      ],
+      "causal_relationships": [],
+      "related_claim_ids": [],
+      "confidence": 0.3
+    }
+  ],
+  "causal_relationships": [
+    {
+      "cause": "API budget constraints",
+      "effect": "Limited literature survey and hypothesis refinement cycles",
+      "strength": "strong",
+      "mechanism": "Budget management system automatically limits number of LLM calls",
+      "conditions": [
+        {
+          "condition_type": "scope",
+          "description": "max_api_calls parameter set to 25",
+          "formal_expression": null,
+          "is_verified": null
+        }
+      ],
+      "evidence_ids": [],
+      "confounders": []
+    },
+    {
+      "cause": "Strict critique thresholds",
+      "effect": "High hypothesis rejection rate",
+      "strength": "strong",
+      "mechanism": "Critic agent applies stringent evaluation criteria resulting in fatal flaw identification",
+      "conditions": [
+        {
+          "condition_type": "scope",
+          "description": "All 6 hypotheses received fatal flaw designation",
+          "formal_expression": null,
+          "is_verified": null
+        }
+      ],
+      "evidence_ids": [],
+      "confounders": [
+        "Lack of comprehensive literature survey",
+        "Limited domain knowledge"
+      ]
+    },
+    {
+      "cause": "JSON parsing improvements",
+      "effect": "Improved system reliability",
+      "strength": "moderate",
+      "mechanism": "Enhanced extract_json function handles markdown code blocks and various JSON formats",
+      "conditions": [
+        {
+          "condition_type": "scope",
+          "description": "LLM outputs wrapped in markdown",
+          "formal_expression": null,
+          "is_verified": null
+        }
+      ],
+      "evidence_ids": [],
+      "confounders": []
+    }
+  ],
+  "ablation_results": [
+    {
+      "id": "70a4d380-9b58-48ba-9758-9e7d7f71d37b",
+      "method_name": "Literature survey",
+      "metrics": [],
+      "is_proposed": false,
+      "configuration": {}
+    },
+    {
+      "id": "b2cc0fed-444d-4446-82c3-7a5db77d1eae",
+      "method_name": "Critique threshold",
+      "metrics": [],
+      "is_proposed": false,
+      "configuration": {}
+    }
+  ],
+  "failure_cases": [
+    "JSON parsing failures when LLM wraps output in markdown (resolved)",
+    "All hypotheses rejected due to fatal flaws in critique phase",
+    "Literature survey JSON parsing issues preventing effective gap identification",
+    "No experiments designed due to lack of ready hypotheses"
+  ],
+  "key_findings": [
+    "Multi-agent architecture successfully implements all research workflow components",
+    "System can generate research hypotheses using strategic creativity approaches",
+    "Critic agent may be too strict, rejecting all generated hypotheses as having fatal flaws",
+    "JSON parsing robustness is critical for LLM-based multi-agent systems",
+    "Literature survey completion is essential before hypothesis generation for quality outcomes",
+    "API budget management is necessary but constrains research depth",
+    "System successfully generates research abstracts and paper sections when provided with hypotheses"
+  ],
+  "raw_tables": []
+}

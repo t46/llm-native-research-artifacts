@@ -80,6 +80,7 @@ class PaperConverter:
         VALID_EVIDENCE_TYPES = {"quantitative", "qualitative", "experimental", "observational", "theoretical", "simulation", "meta_analysis"}
         VALID_CAUSAL_STRENGTHS = {"strong", "moderate", "weak", "suggested", "correlational"}
         VALID_CLAIM_STATUSES = {"supported", "contested", "refuted", "preliminary", "established"}
+        VALID_SOURCE_TYPES = {"paper", "dataset", "code", "human_annotation", "llm_extraction", "llm_synthesis", "experiment", "derived"}
 
         def _fix_enum_recursive(obj: Any) -> Any:
             """Walk the data recursively and fix known enum fields."""
@@ -99,6 +100,8 @@ class PaperConverter:
                         obj[k] = "continuous"
                     elif k == "category" and isinstance(v, str) and v not in {"proposed", "baseline", "state_of_the_art", "ablation", "oracle"}:
                         obj[k] = "baseline"
+                    elif k == "source_type" and isinstance(v, str) and v not in VALID_SOURCE_TYPES:
+                        obj[k] = "derived"  # safe default for non-standard source types
                     else:
                         obj[k] = _fix_enum_recursive(v)
                 return obj
@@ -160,6 +163,21 @@ class PaperConverter:
             return fixed
 
         # Walk the data and fix known issues
+        # Fix provenance entries (null source_id, invalid source_type)
+        def _fix_provenance_list(provenance_list: list) -> list:
+            """Ensure provenance entries have valid required fields."""
+            for prov in provenance_list:
+                if isinstance(prov, dict):
+                    if prov.get("source_id") is None:
+                        prov["source_id"] = "unknown"
+                    if prov.get("source_type") not in VALID_SOURCE_TYPES:
+                        prov["source_type"] = "derived"
+            return provenance_list
+
+        if "metadata" in data and "provenance" in data["metadata"]:
+            if isinstance(data["metadata"]["provenance"], list):
+                data["metadata"]["provenance"] = _fix_provenance_list(data["metadata"]["provenance"])
+
         # Fix setup.datasets[].splits
         if "setup" in data and "datasets" in data["setup"]:
             for ds in data["setup"]["datasets"]:

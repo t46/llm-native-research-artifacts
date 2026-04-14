@@ -1,0 +1,128 @@
+{
+  "evaluator_exp-2025-11-30": [
+    {
+      "question": "What are the key findings of this research?",
+      "answer": "7 key findings",
+      "confidence": 1.0,
+      "source": "programmatic",
+      "evidence_count": 7,
+      "caveats_count": 0,
+      "elapsed_s": 0.0,
+      "status": "success"
+    },
+    {
+      "question": "What are the assumptions and preconditions of the method?",
+      "answer": "The AI Scientist-v2 method operates under several key assumptions and preconditions: it requires human selection of promising ideas from a larger generated set, assumes workshop-level quality targets rather than main conference standards, is limited to machine learning research domains, requires human curation of the best manuscript from multiple runs, and assumes access to external APIs (Claude 3.5 Sonnet, GPT-4o) for operation.",
+      "confidence": 0.95,
+      "source": "llm",
+      "evidence_count": 8,
+      "caveats_count": 3,
+      "elapsed_s": 8.6,
+      "status": "success"
+    },
+    {
+      "question": "What are the main limitations?",
+      "answer": "The main limitations are: 1) Heavy reliance on human selection at critical stages (choosing 3 ideas from ~40 generated and selecting best manuscript from multiple runs), 2) Very small sample size (N=3) providing insufficient statistical power, 3) Limited scope to workshop-level venues and ML domain only, 4) Lack of ablation studies to validate key components like tree search and VLM feedback, and 5) High failure rate with 2/3 papers rejected due to methodological issues.",
+      "confidence": 0.95,
+      "source": "llm",
+      "evidence_count": 10,
+      "caveats_count": 2,
+      "elapsed_s": 8.6,
+      "status": "success"
+    },
+    {
+      "question": "What experimental evidence supports the claims?",
+      "answer": "Found 4 claims",
+      "confidence": 1.0,
+      "source": "programmatic",
+      "evidence_count": 4,
+      "caveats_count": 0,
+      "elapsed_s": 0.0,
+      "status": "success"
+    }
+  ],
+  "evaluator_exp-2025-12-01": [
+    {
+      "question": "What are the key findings of this research?",
+      "answer": "6 key findings",
+      "confidence": 1.0,
+      "source": "programmatic",
+      "evidence_count": 6,
+      "caveats_count": 0,
+      "elapsed_s": 0.0,
+      "status": "success"
+    },
+    {
+      "question": "What are the assumptions and preconditions of the method?",
+      "answer": "The AI Scientist-v2 method has several key assumptions and preconditions including API availability/stability for Claude 3.5 Sonnet and GPT-4o, NVIDIA GPU with CUDA hardware requirements, limitation to machine learning research domains, and targeting workshop-level rather than main conference acceptance.",
+      "confidence": 0.95,
+      "source": "llm",
+      "evidence_count": 5,
+      "caveats_count": 2,
+      "elapsed_s": 7.3,
+      "status": "success"
+    },
+    {
+      "question": "What are the main limitations?",
+      "answer": "The main limitations include: (1) Workshop-level acceptance only, not main conference level, (2) Small sample size (n=3) insufficient for statistical conclusions about system reliability, (3) Below-baseline performance with 33% acceptance rate versus typical workshop rates of 60-70%, (4) Lack of ablation studies comparing tree vs linear approaches and VLM vs non-VLM configurations, (5) Scope limited to machine learning research domains, and (6) Dependence on external API availability and stability.",
+      "confidence": 0.95,
+      "source": "llm",
+      "evidence_count": 8,
+      "caveats_count": 1,
+      "elapsed_s": 7.6,
+      "status": "success"
+    },
+    {
+      "question": "What experimental evidence supports the claims?",
+      "answer": "Found 4 claims",
+      "confidence": 1.0,
+      "source": "programmatic",
+      "evidence_count": 4,
+      "caveats_count": 0,
+      "elapsed_s": 0.0,
+      "status": "success"
+    }
+  ],
+  "evaluator_exp-2025-11-21": [
+    {
+      "question": "What are the key findings of this research?",
+      "answer": "5 key findings",
+      "confidence": 1.0,
+      "source": "programmatic",
+      "evidence_count": 5,
+      "caveats_count": 0,
+      "elapsed_s": 0.0,
+      "status": "success"
+    },
+    {
+      "question": "What are the assumptions and preconditions of the method?",
+      "answer": "The CausalAP method has several key assumptions and preconditions: (1) SCMs accurately represent the causal structure of ML systems - this is an unverified assumption that underpins the entire approach, (2) the four-stage pipeline methodology requires counterfactual ablation generation and information-theoretic selection to work effectively, (3) the method assumes a fixed ablation budget of K=10 components, and (4) it relies on expert-annotated ground truth for evaluation validation.",
+      "confidence": 0.95,
+      "source": "llm",
+      "evidence_count": 5,
+      "caveats_count": 3,
+      "elapsed_s": 10.4,
+      "status": "success"
+    },
+    {
+      "question": "What are the main limitations?",
+      "answer": "The main limitations are: (1) Limited dataset size with only 21 real ML systems in AblationBench, (2) Missing CausalAP-NoPruning baseline implementation preventing direct validation of claims about d-separation's impact, (3) Reliance on unverified assumption that SCMs accurately represent causal structure of ML systems, and (4) Scope limited to ML system ablation planning tasks.",
+      "confidence": 0.95,
+      "source": "llm",
+      "evidence_count": 5,
+      "caveats_count": 2,
+      "elapsed_s": 8.4,
+      "status": "success"
+    },
+    {
+      "question": "What experimental evidence supports the claims?",
+      "answer": "Found 3 claims",
+      "confidence": 1.0,
+      "source": "programmatic",
+      "evidence_count": 3,
+      "caveats_count": 0,
+      "elapsed_s": 0.0,
+      "status": "success"
+    }
+  ]
+}

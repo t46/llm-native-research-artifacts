@@ -144,6 +144,48 @@ This project is complementary to [AI Researcher Hub](https://github.com/t46/ai-r
 
 Future integration: ARH snapshots could automatically generate LNRA artifacts, and LNRA's query/compose/diff operations could power ARH's review and discovery features.
 
+## Autoresearch Validation (2026-04-14)
+
+LNRA has been validated against real autoresearch pipeline outputs -- not just manually
+curated paper text. See [data/autoresearch_artifacts/validation_report.md](data/autoresearch_artifacts/validation_report.md)
+for the full report.
+
+### Data Sources Tested
+
+| Source | Type | Size | Result |
+|--------|------|------|--------|
+| Vanilla autoresearch REPORT.md | Japanese system design doc | 18K chars | Converted (after bug fix) |
+| Auto-research-evaluator (AI Scientist-v2, 2 runs) | English evaluation reports | 41-49K chars | Converted |
+| Auto-research-evaluator (D-Separation) | English evaluation report | 39K chars | Converted |
+
+### Key Findings
+
+1. **Converter works on autoresearch outputs** with minor fixes. The main issue was
+   provenance validation -- autoresearch outputs generate non-standard `source_type` values
+   and null `source_id` fields. Fixed in `_repair_data()`.
+
+2. **query() is effective**: Both programmatic (instant, structured lookups) and LLM-augmented
+   (interpretive, contextual) query paths work on autoresearch artifacts. 16/16 queries
+   successful.
+
+3. **compose() reveals cross-artifact insights**: Synthesizing autoresearch artifacts surfaced
+   patterns (critique calibration as a key differentiator, d-separation explaining ablation gaps)
+   not visible in individual artifacts.
+
+4. **diff() detects meaningful differences**: Successfully found agreements and contradictions
+   between evaluations of the same paper, and complementary findings across different topics.
+
+5. **Autoresearch-specific challenges**: Schema-data mismatch (system docs vs paper format),
+   provenance chain complexity, quantitative sparsity, and mixed-language content require
+   targeted improvements.
+
+### Validation Script
+
+```bash
+# Run the full validation (requires ANTHROPIC_API_KEY)
+uv run python scripts/validate_autoresearch.py
+```
+
 ## Technical Details
 
 - **Python 3.13+** with `uv` for package management

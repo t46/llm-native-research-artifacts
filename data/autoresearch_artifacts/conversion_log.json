@@ -1,0 +1,29 @@
+[
+  {
+    "source": "vanilla_autoresearch",
+    "status": "error",
+    "error": "2 validation errors for ExperimentResultArtifact\nmetadata.provenance.0.source_type\n  Input should be 'paper', 'dataset', 'code', 'human_annotation', 'llm_extraction', 'llm_synthesis', 'experiment' or 'derived' [type=enum, input_value='technical_report', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/enum\nmetadata.provenance.0.source_id\n  Input should be a valid string [type=string_type, input_value=None, input_type=NoneType]\n    For further information visit https://errors.pydantic.dev/2.13/v/string_type",
+    "elapsed_s": 42.0
+  },
+  {
+    "source": "evaluator_exp-2025-11-30",
+    "status": "success",
+    "artifact_type": "experiment_result",
+    "elapsed_s": 40.6,
+    "artifact_path": "/Users/s30825/unktok/dev/llm-native-research-artifacts/data/autoresearch_artifacts/evaluator_exp-2025-11-30.json"
+  },
+  {
+    "source": "evaluator_exp-2025-12-01",
+    "status": "success",
+    "artifact_type": "experiment_result",
+    "elapsed_s": 36.9,
+    "artifact_path": "/Users/s30825/unktok/dev/llm-native-research-artifacts/data/autoresearch_artifacts/evaluator_exp-2025-12-01.json"
+  },
+  {
+    "source": "evaluator_exp-2025-11-21",
+    "status": "success",
+    "artifact_type": "experiment_result",
+    "elapsed_s": 39.3,
+    "artifact_path": "/Users/s30825/unktok/dev/llm-native-research-artifacts/data/autoresearch_artifacts/evaluator_exp-2025-11-21.json"
+  }
+]

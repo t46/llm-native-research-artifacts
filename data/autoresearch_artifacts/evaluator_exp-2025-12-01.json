@@ -1,0 +1,330 @@
+{
+  "metadata": {
+    "id": "e4b961a5-7a40-4750-b693-6958bda958f4",
+    "artifact_type": "experiment_result",
+    "title": "Evaluator Exp-2025-12-01",
+    "description": "An end-to-end autonomous system for machine learning research that eliminates template dependency through progressive agentic tree-search methodology and achieved the first AI-generated paper to pass peer review at a workshop level.",
+    "version": "1.0.0",
+    "created_at": "2026-04-14T03:02:04.772788Z",
+    "updated_at": "2026-04-14T03:02:04.772793Z",
+    "provenance": [
+      {
+        "source_type": "paper",
+        "source_id": "arXiv:2504.08066",
+        "source_title": "The AI Scientist-v2: Workshop-Level Automated Scientific Discovery via Agentic Tree Search",
+        "extraction_method": "claude-structured-extraction",
+        "extraction_date": "2026-04-14T03:02:04.772799Z",
+        "confidence": 0.95,
+        "parent_artifact_ids": [],
+        "notes": null
+      }
+    ],
+    "tags": [
+      "automated_research",
+      "tree_search",
+      "vision_language_models",
+      "scientific_discovery",
+      "ai_agents"
+    ],
+    "domain": "machine_learning",
+    "schema_version": "0.1.0"
+  },
+  "setup": {
+    "task": "Automated end-to-end machine learning research paper generation and submission to peer review",
+    "methodology": "Progressive agentic tree-search with four stages: Preliminary Investigation, Hyperparameter Tuning, Research Agenda Execution, and Ablation Studies. Multi-agent system with Experiment Manager coordinating exploration and VLM-enhanced figure refinement.",
+    "datasets": [],
+    "hyperparameters": [
+      {
+        "name": "stage_1_iterations",
+        "value": "20",
+        "param_type": "discrete",
+        "search_range": null,
+        "is_tuned": false
+      },
+      {
+        "name": "stage_2_iterations",
+        "value": "12",
+        "param_type": "discrete",
+        "search_range": null,
+        "is_tuned": false
+      },
+      {
+        "name": "stage_3_iterations",
+        "value": "12",
+        "param_type": "discrete",
+        "search_range": null,
+        "is_tuned": false
+      },
+      {
+        "name": "stage_4_iterations",
+        "value": "18",
+        "param_type": "discrete",
+        "search_range": null,
+        "is_tuned": false
+      },
+      {
+        "name": "max_depth",
+        "value": "3",
+        "param_type": "discrete",
+        "search_range": null,
+        "is_tuned": false
+      }
+    ],
+    "hardware": "NVIDIA GPU with CUDA required",
+    "software_versions": {},
+    "random_seeds": [],
+    "num_runs": 1,
+    "evaluation_protocol": "Peer review evaluation at ICLR 2025 Workshop on 1-10 scale",
+    "baselines": [
+      "AI Scientist v1"
+    ],
+    "conditions": [
+      {
+        "condition_type": "scope",
+        "description": "Limited to machine learning research domains",
+        "formal_expression": null,
+        "is_verified": true
+      },
+      {
+        "condition_type": "limitation",
+        "description": "Workshop-level acceptance as target rather than main conference",
+        "formal_expression": null,
+        "is_verified": true
+      },
+      {
+        "condition_type": "assumption",
+        "description": "Claude 3.5 Sonnet and GPT-4o API availability and stability",
+        "formal_expression": null,
+        "is_verified": true
+      }
+    ]
+  },
+  "results": [
+    {
+      "id": "533c0551-ade0-4d68-b65f-2f641153e365",
+      "method_name": "AI Scientist-v2",
+      "metrics": [
+        {
+          "name": "acceptance_rate",
+          "value": 0.33,
+          "uncertainty": {
+            "uncertainty_type": "statistical",
+            "value": 0.44,
+            "lower_bound": null,
+            "upper_bound": null,
+            "confidence_level": null,
+            "description": "95% confidence interval spans [0.8%, 90.6%] with n=3"
+          },
+          "higher_is_better": true,
+          "unit": null,
+          "dataset": "ICLR 2025 Workshop submissions",
+          "split": "test",
+          "conditions": []
+        },
+        {
+          "name": "peer_review_score_accepted",
+          "value": 6.33,
+          "uncertainty": null,
+          "higher_is_better": true,
+          "unit": null,
+          "dataset": "Compositional Regularization paper",
+          "split": "test",
+          "conditions": []
+        },
+        {
+          "name": "cost_per_paper",
+          "value": 25.0,
+          "uncertainty": {
+            "uncertainty_type": "epistemic",
+            "value": 5.0,
+            "lower_bound": null,
+            "upper_bound": null,
+            "confidence_level": null,
+            "description": "$20-30 range reported"
+          },
+          "higher_is_better": false,
+          "unit": null,
+          "dataset": "average across three papers",
+          "split": "test",
+          "conditions": []
+        }
+      ],
+      "is_proposed": true,
+      "configuration": {}
+    }
+  ],
+  "claims": [
+    {
+      "id": "47c83f2d-7f22-4220-a4a4-77ef5feae487",
+      "statement": "First AI-generated paper to pass peer review",
+      "formal_statement": null,
+      "status": "supported",
+      "evidence_for": [
+        {
+          "id": "f9db2bae-e8bd-4a6e-8c4e-edf3531be39d",
+          "evidence_type": "experimental",
+          "description": "Compositional Regularization paper accepted at ICLR 2025 Workshop with scores 6, 7, 6",
+          "data": {
+            "acceptance_rate": 0.33,
+            "sample_size": 3
+          },
+          "uncertainty": null,
+          "conditions": [],
+          "provenance": null,
+          "strength": 0.9
+        }
+      ],
+      "evidence_against": [],
+      "conditions": [
+        {
+          "condition_type": "scope",
+          "description": "Workshop level, not main conference",
+          "formal_expression": null,
+          "is_verified": null
+        }
+      ],
+      "causal_relationships": [],
+      "related_claim_ids": [],
+      "confidence": 0.95
+    },
+    {
+      "id": "afbade4a-bf5d-498a-be6a-9de036d4f02e",
+      "statement": "Tree-based exploration improves research paper generation over linear approaches",
+      "formal_statement": null,
+      "status": "preliminary",
+      "evidence_for": [
+        {
+          "id": "c8803e0e-3e81-4230-83e6-4b0eedb66088",
+          "evidence_type": "observational",
+          "description": "System achieved one acceptance using tree search methodology",
+          "data": {},
+          "uncertainty": null,
+          "conditions": [],
+          "provenance": null,
+          "strength": 0.3
+        }
+      ],
+      "evidence_against": [],
+      "conditions": [
+        {
+          "condition_type": "limitation",
+          "description": "No ablation study comparing tree vs linear approaches",
+          "formal_expression": null,
+          "is_verified": null
+        }
+      ],
+      "causal_relationships": [],
+      "related_claim_ids": [],
+      "confidence": 0.3
+    },
+    {
+      "id": "b76bf100-29a7-4628-a7cb-e4d25c34a2ba",
+      "statement": "VLM integration improves figure quality and paper acceptance",
+      "formal_statement": null,
+      "status": "preliminary",
+      "evidence_for": [
+        {
+          "id": "bf8c8489-6d0f-4fc5-9d37-26da257159d2",
+          "evidence_type": "observational",
+          "description": "System with VLM achieved acceptance, addresses documented v1 limitation",
+          "data": {},
+          "uncertainty": null,
+          "conditions": [],
+          "provenance": null,
+          "strength": 0.4
+        }
+      ],
+      "evidence_against": [],
+      "conditions": [
+        {
+          "condition_type": "limitation",
+          "description": "No ablation study testing with vs without VLM",
+          "formal_expression": null,
+          "is_verified": null
+        }
+      ],
+      "causal_relationships": [],
+      "related_claim_ids": [],
+      "confidence": 0.4
+    },
+    {
+      "id": "7fd038ad-11e2-49d4-985e-53c42a065161",
+      "statement": "System eliminates template dependency compared to AI Scientist v1",
+      "formal_statement": null,
+      "status": "established",
+      "evidence_for": [
+        {
+          "id": "005e93d1-e2d4-4662-92d9-bae95da3baed",
+          "evidence_type": "experimental",
+          "description": "Generated papers across different ML subdomains without domain-specific templates",
+          "data": {
+            "domains_tested": 3,
+            "templates_required": 0
+          },
+          "uncertainty": null,
+          "conditions": [],
+          "provenance": null,
+          "strength": 0.9
+        }
+      ],
+      "evidence_against": [],
+      "conditions": [],
+      "causal_relationships": [],
+      "related_claim_ids": [],
+      "confidence": 0.9
+    }
+  ],
+  "causal_relationships": [
+    {
+      "cause": "template_elimination",
+      "effect": "broader_domain_applicability",
+      "strength": "strong",
+      "mechanism": "removal of human-authored domain-specific code templates",
+      "conditions": [
+        {
+          "condition_type": "scope",
+          "description": "ML research domains",
+          "formal_expression": null,
+          "is_verified": null
+        }
+      ],
+      "evidence_ids": [],
+      "confounders": []
+    },
+    {
+      "cause": "tree_search_methodology",
+      "effect": "improved_paper_quality",
+      "strength": "suggested",
+      "mechanism": "parallel hypothesis exploration with targeted refinement",
+      "conditions": [
+        {
+          "condition_type": "scope",
+          "description": "sufficient computational budget",
+          "formal_expression": null,
+          "is_verified": null
+        }
+      ],
+      "evidence_ids": [],
+      "confounders": [
+        "model_capability_improvements",
+        "prompt_engineering"
+      ]
+    }
+  ],
+  "ablation_results": [],
+  "failure_cases": [
+    "Pest Detection paper rejected with scores 3, 7, 4",
+    "Label Noise paper rejected with scores 3, 3, 3",
+    "33% success rate below typical workshop acceptance (60-70%)",
+    "Papers did not meet internal standards for main conference submission"
+  ],
+  "key_findings": [
+    "First AI system to achieve peer review acceptance for generated research paper",
+    "VLM integration addresses visual quality limitations of predecessor systems",
+    "Template-free operation enables broader domain coverage than AI Scientist v1",
+    "Cost of $20-30 per paper makes approach feasible for research exploration",
+    "Sample size of n=3 insufficient for statistical conclusions about system reliability",
+    "Performance below workshop baseline acceptance rates indicates need for improvement"
+  ],
+  "raw_tables": []
+}

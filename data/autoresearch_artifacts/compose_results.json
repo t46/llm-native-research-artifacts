@@ -1,0 +1,812 @@
+[
+  {
+    "question": "What patterns emerge across these research outputs?",
+    "synthesis": "These three artifacts represent different aspects of AI-driven scientific research, revealing both promising advances and fundamental challenges. The first two artifacts document the same breakthrough system (AI Scientist-v2) that achieved the first peer-reviewed acceptance of an AI-generated research paper, while the third explores causal reasoning for experimental design in AI research systems. Together, they illustrate the current state of automated research: capable of producing publishable work but with significant limitations in methodology validation and theoretical foundations.",
+    "shared_findings_count": 6,
+    "contradictions_count": 2,
+    "novel_insights_count": 4,
+    "gaps_count": 6,
+    "elapsed_s": 21.9,
+    "status": "success",
+    "full_result": {
+      "synthesis": "These three artifacts represent different aspects of AI-driven scientific research, revealing both promising advances and fundamental challenges. The first two artifacts document the same breakthrough system (AI Scientist-v2) that achieved the first peer-reviewed acceptance of an AI-generated research paper, while the third explores causal reasoning for experimental design in AI research systems. Together, they illustrate the current state of automated research: capable of producing publishable work but with significant limitations in methodology validation and theoretical foundations.",
+      "shared_findings": [
+        "Small sample sizes (N=3 for AI Scientist-v2, N=21 for CausalAP) limit statistical power and generalizability",
+        "Systems show high precision but concerning recall limitations when evaluated rigorously",
+        "Current AI research automation requires substantial human intervention and selection",
+        "Template-free operation represents a significant advance over previous systems",
+        "Workshop-level acceptance is more achievable than main conference publication for AI systems",
+        "Lack of proper ablation studies undermines claims about component effectiveness"
+      ],
+      "contradictions": [
+        {
+          "description": "Different uncertainty estimates for identical peer review metrics",
+          "artifact_indices": [
+            0,
+            1
+          ],
+          "possible_explanation": "Different extraction methods or rounding approaches applied to the same underlying data, suggesting inconsistency in experimental reporting standards"
+        },
+        {
+          "description": "Conflicting confidence levels for tree search effectiveness claims",
+          "artifact_indices": [
+            0,
+            1
+          ],
+          "possible_explanation": "Artifacts represent different perspectives on the same system, with varying emphasis on the strength of evidence for architectural choices"
+        }
+      ],
+      "novel_insights": [
+        "The success of AI Scientist-v2 at workshop level may be partly due to avoiding the rigorous experimental design that CausalAP research reveals is problematic for AI systems",
+        "The high precision but low recall pattern appears across both automated paper generation and experimental planning, suggesting a systematic bias toward conservative approaches in AI research automation",
+        "The combination reveals a fundamental tension: AI research systems can produce acceptable outputs but struggle with the systematic experimental validation that robust science requires",
+        "Template elimination (strongly supported) may be more important for research automation than sophisticated causal reasoning (which shows poor performance), suggesting architectural simplicity over theoretical sophistication"
+      ],
+      "gaps": [
+        "No direct comparison between AI Scientist v1 and v2 performance despite multiple claims of superiority",
+        "Missing ablation studies for all major architectural components (tree search, VLM integration, template-free operation)",
+        "No cost-benefit analysis comparing AI-generated research to human researcher productivity",
+        "Absence of evaluation on main conference venues or other scientific domains beyond ML",
+        "No investigation of why causal reasoning performs poorly for experimental design in AI systems",
+        "Limited understanding of what constitutes 'good enough' quality for automated scientific discovery"
+      ],
+      "confidence": 0.85,
+      "method_rankings": {
+        "ablation_planning_f1": [
+          "Heuristic",
+          "Topological",
+          "LLM-Direct",
+          "CausalAP"
+        ],
+        "peer_review_acceptance": [
+          "AI Scientist-v2"
+        ],
+        "experimental_rigor": [
+          "CausalAP",
+          "AI Scientist-v2"
+        ],
+        "practical_applicability": [
+          "AI Scientist-v2",
+          "Heuristic",
+          "LLM-Direct",
+          "Topological",
+          "CausalAP"
+        ]
+      },
+      "programmatic_analysis": {
+        "num_artifacts": 3,
+        "artifact_types": [
+          "0: experiment_result",
+          "1: experiment_result",
+          "2: experiment_result"
+        ],
+        "all_claims": [
+          {
+            "artifact": 0,
+            "statement": "The AI Scientist-v2 is the first AI system to have a paper accepted at a peer-reviewed academic venue",
+            "status": "supported",
+            "confidence": 0.95
+          },
+          {
+            "artifact": 0,
+            "statement": "Tree search enables deeper exploration compared to linear experimentation",
+            "status": "preliminary",
+            "confidence": 0.3
+          },
+          {
+            "artifact": 0,
+            "statement": "VLM feedback improves figure quality",
+            "status": "preliminary",
+            "confidence": 0.3
+          },
+          {
+            "artifact": 0,
+            "statement": "The system surpasses AI Scientist-v1 capabilities",
+            "status": "contested",
+            "confidence": 0.4
+          },
+          {
+            "artifact": 1,
+            "statement": "First AI-generated paper to pass peer review",
+            "status": "supported",
+            "confidence": 0.95
+          },
+          {
+            "artifact": 1,
+            "statement": "Tree-based exploration improves research paper generation over linear approaches",
+            "status": "preliminary",
+            "confidence": 0.3
+          },
+          {
+            "artifact": 1,
+            "statement": "VLM integration improves figure quality and paper acceptance",
+            "status": "preliminary",
+            "confidence": 0.4
+          },
+          {
+            "artifact": 1,
+            "statement": "System eliminates template dependency compared to AI Scientist v1",
+            "status": "established",
+            "confidence": 0.9
+          },
+          {
+            "artifact": 2,
+            "statement": "D-separation prunes 96% of candidates with 68% being valid ablations incorrectly classified as redundant",
+            "status": "supported",
+            "confidence": 0.95
+          },
+          {
+            "artifact": 2,
+            "statement": "D-separation conflates causal independence with experimental redundancy",
+            "status": "supported",
+            "confidence": 0.9
+          },
+          {
+            "artifact": 2,
+            "statement": "CausalAP without d-separation would achieve 55-65% recall",
+            "status": "preliminary",
+            "confidence": 0.5
+          }
+        ],
+        "all_methods": [
+          "Topological",
+          "AI Scientist-v2",
+          "LLM-Direct",
+          "CausalAP",
+          "Heuristic"
+        ],
+        "metric_overlap": {
+          "peer_review_acceptance_rate": [
+            {
+              "artifact": 0,
+              "method": "AI Scientist-v2",
+              "value": 0.333
+            }
+          ],
+          "peer_review_score": [
+            {
+              "artifact": 0,
+              "method": "AI Scientist-v2",
+              "value": 6.33
+            }
+          ],
+          "ranking_percentile": [
+            {
+              "artifact": 0,
+              "method": "AI Scientist-v2",
+              "value": 0.55
+            }
+          ],
+          "acceptance_rate": [
+            {
+              "artifact": 1,
+              "method": "AI Scientist-v2",
+              "value": 0.33
+            }
+          ],
+          "peer_review_score_accepted": [
+            {
+              "artifact": 1,
+              "method": "AI Scientist-v2",
+              "value": 6.33
+            }
+          ],
+          "cost_per_paper": [
+            {
+              "artifact": 1,
+              "method": "AI Scientist-v2",
+              "value": 25.0
+            }
+          ],
+          "recall": [
+            {
+              "artifact": 2,
+              "method": "CausalAP",
+              "value": 0.32
+            },
+            {
+              "artifact": 2,
+              "method": "Heuristic",
+              "value": 0.992
+            },
+            {
+              "artifact": 2,
+              "method": "LLM-Direct",
+              "value": 0.78
+            },
+            {
+              "artifact": 2,
+              "method": "Topological",
+              "value": 0.816
+            }
+          ],
+          "precision": [
+            {
+              "artifact": 2,
+              "method": "CausalAP",
+              "value": 1.0
+            },
+            {
+              "artifact": 2,
+              "method": "Heuristic",
+              "value": 0.784
+            },
+            {
+              "artifact": 2,
+              "method": "LLM-Direct",
+              "value": 0.884
+            },
+            {
+              "artifact": 2,
+              "method": "Topological",
+              "value": 0.922
+            }
+          ],
+          "f1": [
+            {
+              "artifact": 2,
+              "method": "CausalAP",
+              "value": 0.49
+            },
+            {
+              "artifact": 2,
+              "method": "Heuristic",
+              "value": 0.877
+            },
+            {
+              "artifact": 2,
+              "method": "LLM-Direct",
+              "value": 0.829
+            },
+            {
+              "artifact": 2,
+              "method": "Topological",
+              "value": 0.866
+            }
+          ],
+          "predictions_per_sample": [
+            {
+              "artifact": 2,
+              "method": "CausalAP",
+              "value": 1.0
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "question": "What are the common limitations and challenges?",
+    "synthesis": "The three artifacts reveal fundamental challenges in automated AI research systems. While AI Scientist-v2 achieved the milestone of first peer review acceptance, it succeeded with significant human intervention and a small sample size (n=3). The third artifact on causal reasoning for experimental design exposes deeper methodological issues - even sophisticated causal methods like d-separation can systematically fail in research contexts. Together, these findings suggest that automated research systems face both statistical validation challenges (small samples, high variance) and fundamental theoretical mismatches between formal methods and research practice.",
+    "shared_findings_count": 6,
+    "contradictions_count": 0,
+    "novel_insights_count": 3,
+    "gaps_count": 6,
+    "elapsed_s": 16.1,
+    "status": "success",
+    "full_result": {
+      "synthesis": "The three artifacts reveal fundamental challenges in automated AI research systems. While AI Scientist-v2 achieved the milestone of first peer review acceptance, it succeeded with significant human intervention and a small sample size (n=3). The third artifact on causal reasoning for experimental design exposes deeper methodological issues - even sophisticated causal methods like d-separation can systematically fail in research contexts. Together, these findings suggest that automated research systems face both statistical validation challenges (small samples, high variance) and fundamental theoretical mismatches between formal methods and research practice.",
+      "shared_findings": [
+        "Small sample sizes limit statistical validity (n=3 for AI Scientist-v2, n=21 for CausalAP)",
+        "High variance in performance metrics across all systems",
+        "Requirement for human intervention/selection undermines full automation claims",
+        "Template-free operation enables broader domain coverage but comes with quality trade-offs",
+        "Performance below established baselines in respective domains",
+        "Lack of ablation studies validating core architectural claims"
+      ],
+      "contradictions": [],
+      "novel_insights": [
+        "The success of AI Scientist-v2 at workshop level may mask fundamental limitations revealed by the causal reasoning analysis - automated systems may systematically misunderstand what constitutes valid experimental design",
+        "While AI Scientist-v2 claims tree search enables better exploration, CausalAP shows that formal reasoning methods can over-prune valid experimental paths, suggesting a tension between systematic exploration and practical research needs",
+        "The combination reveals a meta-problem: automated research systems need better methods for experimental design (as shown by CausalAP limitations) but current successful systems (AI Scientist-v2) achieve results through human curation rather than principled automation"
+      ],
+      "gaps": [
+        "No systematic comparison between automated and human research quality at equivalent scales",
+        "Missing analysis of why formal causal methods fail in research contexts while informal human judgment succeeds",
+        "Lack of theoretical framework for when automated experimental design should match human intuition vs formal reasoning",
+        "No investigation of how sample size requirements scale with research domain complexity",
+        "Absence of cost-benefit analysis comparing human curation vs fully automated approaches",
+        "Missing evaluation of how these limitations affect reproducibility and scientific validity"
+      ],
+      "confidence": 0.85,
+      "method_rankings": {
+        "f1_score": [
+          "Heuristic",
+          "Topological",
+          "LLM-Direct",
+          "CausalAP"
+        ],
+        "recall": [
+          "Heuristic",
+          "Topological",
+          "LLM-Direct",
+          "CausalAP"
+        ],
+        "precision": [
+          "CausalAP",
+          "Topological",
+          "LLM-Direct",
+          "Heuristic"
+        ],
+        "peer_review_acceptance": [
+          "AI Scientist-v2"
+        ]
+      },
+      "programmatic_analysis": {
+        "num_artifacts": 3,
+        "artifact_types": [
+          "0: experiment_result",
+          "1: experiment_result",
+          "2: experiment_result"
+        ],
+        "all_claims": [
+          {
+            "artifact": 0,
+            "statement": "The AI Scientist-v2 is the first AI system to have a paper accepted at a peer-reviewed academic venue",
+            "status": "supported",
+            "confidence": 0.95
+          },
+          {
+            "artifact": 0,
+            "statement": "Tree search enables deeper exploration compared to linear experimentation",
+            "status": "preliminary",
+            "confidence": 0.3
+          },
+          {
+            "artifact": 0,
+            "statement": "VLM feedback improves figure quality",
+            "status": "preliminary",
+            "confidence": 0.3
+          },
+          {
+            "artifact": 0,
+            "statement": "The system surpasses AI Scientist-v1 capabilities",
+            "status": "contested",
+            "confidence": 0.4
+          },
+          {
+            "artifact": 1,
+            "statement": "First AI-generated paper to pass peer review",
+            "status": "supported",
+            "confidence": 0.95
+          },
+          {
+            "artifact": 1,
+            "statement": "Tree-based exploration improves research paper generation over linear approaches",
+            "status": "preliminary",
+            "confidence": 0.3
+          },
+          {
+            "artifact": 1,
+            "statement": "VLM integration improves figure quality and paper acceptance",
+            "status": "preliminary",
+            "confidence": 0.4
+          },
+          {
+            "artifact": 1,
+            "statement": "System eliminates template dependency compared to AI Scientist v1",
+            "status": "established",
+            "confidence": 0.9
+          },
+          {
+            "artifact": 2,
+            "statement": "D-separation prunes 96% of candidates with 68% being valid ablations incorrectly classified as redundant",
+            "status": "supported",
+            "confidence": 0.95
+          },
+          {
+            "artifact": 2,
+            "statement": "D-separation conflates causal independence with experimental redundancy",
+            "status": "supported",
+            "confidence": 0.9
+          },
+          {
+            "artifact": 2,
+            "statement": "CausalAP without d-separation would achieve 55-65% recall",
+            "status": "preliminary",
+            "confidence": 0.5
+          }
+        ],
+        "all_methods": [
+          "Topological",
+          "AI Scientist-v2",
+          "LLM-Direct",
+          "CausalAP",
+          "Heuristic"
+        ],
+        "metric_overlap": {
+          "peer_review_acceptance_rate": [
+            {
+              "artifact": 0,
+              "method": "AI Scientist-v2",
+              "value": 0.333
+            }
+          ],
+          "peer_review_score": [
+            {
+              "artifact": 0,
+              "method": "AI Scientist-v2",
+              "value": 6.33
+            }
+          ],
+          "ranking_percentile": [
+            {
+              "artifact": 0,
+              "method": "AI Scientist-v2",
+              "value": 0.55
+            }
+          ],
+          "acceptance_rate": [
+            {
+              "artifact": 1,
+              "method": "AI Scientist-v2",
+              "value": 0.33
+            }
+          ],
+          "peer_review_score_accepted": [
+            {
+              "artifact": 1,
+              "method": "AI Scientist-v2",
+              "value": 6.33
+            }
+          ],
+          "cost_per_paper": [
+            {
+              "artifact": 1,
+              "method": "AI Scientist-v2",
+              "value": 25.0
+            }
+          ],
+          "recall": [
+            {
+              "artifact": 2,
+              "method": "CausalAP",
+              "value": 0.32
+            },
+            {
+              "artifact": 2,
+              "method": "Heuristic",
+              "value": 0.992
+            },
+            {
+              "artifact": 2,
+              "method": "LLM-Direct",
+              "value": 0.78
+            },
+            {
+              "artifact": 2,
+              "method": "Topological",
+              "value": 0.816
+            }
+          ],
+          "precision": [
+            {
+              "artifact": 2,
+              "method": "CausalAP",
+              "value": 1.0
+            },
+            {
+              "artifact": 2,
+              "method": "Heuristic",
+              "value": 0.784
+            },
+            {
+              "artifact": 2,
+              "method": "LLM-Direct",
+              "value": 0.884
+            },
+            {
+              "artifact": 2,
+              "method": "Topological",
+              "value": 0.922
+            }
+          ],
+          "f1": [
+            {
+              "artifact": 2,
+              "method": "CausalAP",
+              "value": 0.49
+            },
+            {
+              "artifact": 2,
+              "method": "Heuristic",
+              "value": 0.877
+            },
+            {
+              "artifact": 2,
+              "method": "LLM-Direct",
+              "value": 0.829
+            },
+            {
+              "artifact": 2,
+              "method": "Topological",
+              "value": 0.866
+            }
+          ],
+          "predictions_per_sample": [
+            {
+              "artifact": 2,
+              "method": "CausalAP",
+              "value": 1.0
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "question": "How do the methodological approaches differ?",
+    "synthesis": "The three artifacts represent distinct methodological approaches to AI research automation: Artifacts 0 and 1 describe the same AI Scientist-v2 system using progressive tree-search for end-to-end paper generation, while Artifact 2 investigates causal reasoning for experimental design within AI research systems. The AI Scientist-v2 represents a complete research automation pipeline, while the causal ablation planning work addresses a specific component of experimental design that could be integrated into such systems.",
+    "shared_findings_count": 5,
+    "contradictions_count": 2,
+    "novel_insights_count": 4,
+    "gaps_count": 5,
+    "elapsed_s": 19.9,
+    "status": "success",
+    "full_result": {
+      "synthesis": "The three artifacts represent distinct methodological approaches to AI research automation: Artifacts 0 and 1 describe the same AI Scientist-v2 system using progressive tree-search for end-to-end paper generation, while Artifact 2 investigates causal reasoning for experimental design within AI research systems. The AI Scientist-v2 represents a complete research automation pipeline, while the causal ablation planning work addresses a specific component of experimental design that could be integrated into such systems.",
+      "shared_findings": [
+        "Template-free operation improves system generalizability across domains",
+        "Tree-based search methodologies show promise for research automation",
+        "Current AI research automation still requires significant methodological refinement",
+        "Small sample sizes (N=3 for AI Scientist, N=21 for CausalAP) limit statistical conclusions",
+        "Integration of multiple AI components (LLMs, VLMs) enables complex research tasks"
+      ],
+      "contradictions": [
+        {
+          "description": "Success rates for AI research automation",
+          "artifact_indices": [
+            0,
+            2
+          ],
+          "possible_explanation": "Different tasks and evaluation criteria - AI Scientist targets complete paper generation (33% acceptance) while CausalAP targets ablation planning (32% recall), representing different stages and difficulty levels of research automation"
+        },
+        {
+          "description": "Effectiveness of systematic vs heuristic approaches",
+          "artifact_indices": [
+            0,
+            2
+          ],
+          "possible_explanation": "AI Scientist's sophisticated tree search achieves modest success in paper generation, while CausalAP's principled causal approach underperforms simple heuristics in ablation planning, suggesting context-dependent utility of formal methods"
+        }
+      ],
+      "novel_insights": [
+        "The combination suggests a hierarchical approach to AI research automation where high-level paper generation (AI Scientist-v2) could benefit from improved experimental design components like ablation planning",
+        "Both systems show that theoretical sophistication (tree search, causal reasoning) doesn't automatically translate to empirical superiority, indicating the need for task-specific methodological choices",
+        "The AI Scientist's success at workshop-level peer review combined with CausalAP's diagnostic analysis suggests that current AI research automation achieves proof-of-concept but requires substantial refinement for reliability",
+        "Cross-system analysis reveals that research automation may benefit from modular architectures where different reasoning approaches are applied to different research stages"
+      ],
+      "gaps": [
+        "No direct comparison between AI Scientist-v2 and simpler baselines for paper generation",
+        "Missing ablation studies on key components (tree search vs linear, VLM integration, d-separation pruning)",
+        "Lack of integration between experimental design methods (like CausalAP) and complete research systems (like AI Scientist)",
+        "Insufficient evaluation on main conference-level submissions rather than workshop papers",
+        "No analysis of how causal reasoning failures in experimental design might impact overall research automation quality"
+      ],
+      "confidence": 0.85,
+      "method_rankings": {
+        "research_paper_generation": [
+          "AI Scientist-v2"
+        ],
+        "ablation_planning_recall": [
+          "Heuristic",
+          "Topological",
+          "LLM-Direct",
+          "CausalAP"
+        ],
+        "ablation_planning_f1": [
+          "Heuristic",
+          "Topological",
+          "LLM-Direct",
+          "CausalAP"
+        ],
+        "ablation_planning_precision": [
+          "CausalAP",
+          "Topological",
+          "LLM-Direct",
+          "Heuristic"
+        ]
+      },
+      "programmatic_analysis": {
+        "num_artifacts": 3,
+        "artifact_types": [
+          "0: experiment_result",
+          "1: experiment_result",
+          "2: experiment_result"
+        ],
+        "all_claims": [
+          {
+            "artifact": 0,
+            "statement": "The AI Scientist-v2 is the first AI system to have a paper accepted at a peer-reviewed academic venue",
+            "status": "supported",
+            "confidence": 0.95
+          },
+          {
+            "artifact": 0,
+            "statement": "Tree search enables deeper exploration compared to linear experimentation",
+            "status": "preliminary",
+            "confidence": 0.3
+          },
+          {
+            "artifact": 0,
+            "statement": "VLM feedback improves figure quality",
+            "status": "preliminary",
+            "confidence": 0.3
+          },
+          {
+            "artifact": 0,
+            "statement": "The system surpasses AI Scientist-v1 capabilities",
+            "status": "contested",
+            "confidence": 0.4
+          },
+          {
+            "artifact": 1,
+            "statement": "First AI-generated paper to pass peer review",
+            "status": "supported",
+            "confidence": 0.95
+          },
+          {
+            "artifact": 1,
+            "statement": "Tree-based exploration improves research paper generation over linear approaches",
+            "status": "preliminary",
+            "confidence": 0.3
+          },
+          {
+            "artifact": 1,
+            "statement": "VLM integration improves figure quality and paper acceptance",
+            "status": "preliminary",
+            "confidence": 0.4
+          },
+          {
+            "artifact": 1,
+            "statement": "System eliminates template dependency compared to AI Scientist v1",
+            "status": "established",
+            "confidence": 0.9
+          },
+          {
+            "artifact": 2,
+            "statement": "D-separation prunes 96% of candidates with 68% being valid ablations incorrectly classified as redundant",
+            "status": "supported",
+            "confidence": 0.95
+          },
+          {
+            "artifact": 2,
+            "statement": "D-separation conflates causal independence with experimental redundancy",
+            "status": "supported",
+            "confidence": 0.9
+          },
+          {
+            "artifact": 2,
+            "statement": "CausalAP without d-separation would achieve 55-65% recall",
+            "status": "preliminary",
+            "confidence": 0.5
+          }
+        ],
+        "all_methods": [
+          "Topological",
+          "AI Scientist-v2",
+          "LLM-Direct",
+          "CausalAP",
+          "Heuristic"
+        ],
+        "metric_overlap": {
+          "peer_review_acceptance_rate": [
+            {
+              "artifact": 0,
+              "method": "AI Scientist-v2",
+              "value": 0.333
+            }
+          ],
+          "peer_review_score": [
+            {
+              "artifact": 0,
+              "method": "AI Scientist-v2",
+              "value": 6.33
+            }
+          ],
+          "ranking_percentile": [
+            {
+              "artifact": 0,
+              "method": "AI Scientist-v2",
+              "value": 0.55
+            }
+          ],
+          "acceptance_rate": [
+            {
+              "artifact": 1,
+              "method": "AI Scientist-v2",
+              "value": 0.33
+            }
+          ],
+          "peer_review_score_accepted": [
+            {
+              "artifact": 1,
+              "method": "AI Scientist-v2",
+              "value": 6.33
+            }
+          ],
+          "cost_per_paper": [
+            {
+              "artifact": 1,
+              "method": "AI Scientist-v2",
+              "value": 25.0
+            }
+          ],
+          "recall": [
+            {
+              "artifact": 2,
+              "method": "CausalAP",
+              "value": 0.32
+            },
+            {
+              "artifact": 2,
+              "method": "Heuristic",
+              "value": 0.992
+            },
+            {
+              "artifact": 2,
+              "method": "LLM-Direct",
+              "value": 0.78
+            },
+            {
+              "artifact": 2,
+              "method": "Topological",
+              "value": 0.816
+            }
+          ],
+          "precision": [
+            {
+              "artifact": 2,
+              "method": "CausalAP",
+              "value": 1.0
+            },
+            {
+              "artifact": 2,
+              "method": "Heuristic",
+              "value": 0.784
+            },
+            {
+              "artifact": 2,
+              "method": "LLM-Direct",
+              "value": 0.884
+            },
+            {
+              "artifact": 2,
+              "method": "Topological",
+              "value": 0.922
+            }
+          ],
+          "f1": [
+            {
+              "artifact": 2,
+              "method": "CausalAP",
+              "value": 0.49
+            },
+            {
+              "artifact": 2,
+              "method": "Heuristic",
+              "value": 0.877
+            },
+            {
+              "artifact": 2,
+              "method": "LLM-Direct",
+              "value": 0.829
+            },
+            {
+              "artifact": 2,
+              "method": "Topological",
+              "value": 0.866
+            }
+          ],
+          "predictions_per_sample": [
+            {
+              "artifact": 2,
+              "method": "CausalAP",
+              "value": 1.0
+            }
+          ]
+        }
+      }
+    }
+  }
+]

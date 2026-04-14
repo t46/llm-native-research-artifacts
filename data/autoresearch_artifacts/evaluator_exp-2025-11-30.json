@@ -1,0 +1,369 @@
+{
+  "metadata": {
+    "id": "dd74aaf9-0948-4efb-8bdb-09b1d235cc92",
+    "artifact_type": "experiment_result",
+    "title": "Evaluator Exp-2025-11-30",
+    "description": "An end-to-end system for automated ML research paper generation that achieved the first documented acceptance of an AI-generated paper at a peer-reviewed venue through tree-based experimentation and VLM feedback.",
+    "version": "1.0.0",
+    "created_at": "2026-04-14T03:01:27.834897Z",
+    "updated_at": "2026-04-14T03:01:27.834901Z",
+    "provenance": [
+      {
+        "source_type": "paper",
+        "source_id": "arXiv:2504.08066v1",
+        "source_title": "The AI Scientist-v2: Workshop-Level Automated Scientific Discovery via Agentic Tree Search",
+        "extraction_method": "claude-structured-extraction",
+        "extraction_date": "2026-04-14T03:01:27.834911Z",
+        "confidence": 0.92,
+        "parent_artifact_ids": [],
+        "notes": null
+      }
+    ],
+    "tags": [
+      "ai-for-science",
+      "automated-research",
+      "tree-search",
+      "large-language-models",
+      "scientific-writing",
+      "peer-review"
+    ],
+    "domain": "machine_learning",
+    "schema_version": "0.1.0"
+  },
+  "setup": {
+    "task": "Automated generation of complete machine learning research papers from abstract ideas to peer-reviewed publication",
+    "methodology": "End-to-end pipeline with domain-general codebase drafting, tree-based experimentation using best-first search, and VLM-enhanced manuscript writing",
+    "datasets": [
+      {
+        "name": "ICLR 2025 ICBINB Workshop Submissions",
+        "version": null,
+        "size": 3,
+        "splits": {
+          "test": 3
+        },
+        "preprocessing": [
+          "human_idea_selection",
+          "best_manuscript_selection"
+        ],
+        "url": null,
+        "characteristics": {
+          "domain": "machine_learning",
+          "venue_type": "workshop",
+          "acceptance_rate": "60-80%"
+        }
+      }
+    ],
+    "hyperparameters": [
+      {
+        "name": "temperature",
+        "value": "0.5",
+        "param_type": "continuous",
+        "search_range": null,
+        "is_tuned": false
+      },
+      {
+        "name": "max_tokens",
+        "value": "8192",
+        "param_type": "discrete",
+        "search_range": null,
+        "is_tuned": false
+      },
+      {
+        "name": "stage_1_nodes",
+        "value": "21",
+        "param_type": "discrete",
+        "search_range": null,
+        "is_tuned": false
+      },
+      {
+        "name": "stage_4_nodes",
+        "value": "12",
+        "param_type": "discrete",
+        "search_range": null,
+        "is_tuned": false
+      }
+    ],
+    "hardware": "Claude 3.5 Sonnet API, GPT-4o API",
+    "software_versions": {},
+    "random_seeds": [],
+    "num_runs": 3,
+    "evaluation_protocol": "Real peer review at ICLR 2025 ICBINB Workshop with blind review process",
+    "baselines": [],
+    "conditions": [
+      {
+        "condition_type": "scope",
+        "description": "Limited to machine learning research domain",
+        "formal_expression": null,
+        "is_verified": true
+      },
+      {
+        "condition_type": "scope",
+        "description": "Workshop-level quality target (not main conference)",
+        "formal_expression": null,
+        "is_verified": true
+      },
+      {
+        "condition_type": "limitation",
+        "description": "Human selection of 3 ideas from ~40 generated",
+        "formal_expression": null,
+        "is_verified": true
+      },
+      {
+        "condition_type": "limitation",
+        "description": "Human selection of best manuscript from multiple runs",
+        "formal_expression": null,
+        "is_verified": true
+      }
+    ]
+  },
+  "results": [
+    {
+      "id": "202eb4ce-5a2e-46ba-bc6d-0a41ebf3d683",
+      "method_name": "AI Scientist-v2",
+      "metrics": [
+        {
+          "name": "peer_review_acceptance_rate",
+          "value": 0.333,
+          "uncertainty": {
+            "uncertainty_type": "statistical",
+            "value": 0.39,
+            "lower_bound": null,
+            "upper_bound": null,
+            "confidence_level": null,
+            "description": "95% confidence interval approximately 1.7% to 79.1% with N=3"
+          },
+          "higher_is_better": true,
+          "unit": null,
+          "dataset": "ICLR 2025 ICBINB Workshop",
+          "split": "test",
+          "conditions": []
+        },
+        {
+          "name": "peer_review_score",
+          "value": 6.33,
+          "uncertainty": {
+            "uncertainty_type": "statistical",
+            "value": 0.58,
+            "lower_bound": null,
+            "upper_bound": null,
+            "confidence_level": null,
+            "description": "standard deviation from scores 6, 7, 6"
+          },
+          "higher_is_better": true,
+          "unit": null,
+          "dataset": "ICLR 2025 ICBINB Workshop",
+          "split": "test",
+          "conditions": []
+        },
+        {
+          "name": "ranking_percentile",
+          "value": 0.55,
+          "uncertainty": null,
+          "higher_is_better": true,
+          "unit": null,
+          "dataset": "ICLR 2025 ICBINB Workshop",
+          "split": "test",
+          "conditions": []
+        }
+      ],
+      "is_proposed": true,
+      "configuration": {}
+    }
+  ],
+  "claims": [
+    {
+      "id": "b3649bd9-22b7-49b9-a665-022da055111f",
+      "statement": "The AI Scientist-v2 is the first AI system to have a paper accepted at a peer-reviewed academic venue",
+      "formal_statement": null,
+      "status": "supported",
+      "evidence_for": [
+        {
+          "id": "179aba5f-dc3f-4986-93a4-daed0c7d3fde",
+          "evidence_type": "experimental",
+          "description": "One paper accepted at ICLR 2025 ICBINB Workshop with documented scores of 6, 7, 6",
+          "data": {
+            "acceptance_rate": 0.333,
+            "venue": "ICLR 2025 ICBINB",
+            "scores": [
+              6,
+              7,
+              6
+            ]
+          },
+          "uncertainty": null,
+          "conditions": [],
+          "provenance": null,
+          "strength": 0.9
+        }
+      ],
+      "evidence_against": [],
+      "conditions": [
+        {
+          "condition_type": "scope",
+          "description": "Workshop-level venue, not main conference",
+          "formal_expression": null,
+          "is_verified": null
+        },
+        {
+          "condition_type": "scope",
+          "description": "Machine learning domain only",
+          "formal_expression": null,
+          "is_verified": null
+        }
+      ],
+      "causal_relationships": [],
+      "related_claim_ids": [],
+      "confidence": 0.95
+    },
+    {
+      "id": "617709db-45c7-44d8-8eea-fe4d889c8985",
+      "statement": "Tree search enables deeper exploration compared to linear experimentation",
+      "formal_statement": null,
+      "status": "preliminary",
+      "evidence_for": [
+        {
+          "id": "861ac551-e5e9-44b1-be9a-28ba13afc521",
+          "evidence_type": "observational",
+          "description": "System architecture includes tree search with four-stage pipeline",
+          "data": {},
+          "uncertainty": null,
+          "conditions": [],
+          "provenance": null,
+          "strength": 0.2
+        }
+      ],
+      "evidence_against": [],
+      "conditions": [
+        {
+          "condition_type": "limitation",
+          "description": "No ablation study comparing tree search vs linear exploration",
+          "formal_expression": null,
+          "is_verified": null
+        }
+      ],
+      "causal_relationships": [],
+      "related_claim_ids": [],
+      "confidence": 0.3
+    },
+    {
+      "id": "7d647692-f435-4d33-a1c3-22ee26185ba7",
+      "statement": "VLM feedback improves figure quality",
+      "formal_statement": null,
+      "status": "preliminary",
+      "evidence_for": [
+        {
+          "id": "26bb9a46-1878-4ce5-8a4b-016e3d24be2d",
+          "evidence_type": "observational",
+          "description": "VLM module included in pipeline for figure-caption alignment",
+          "data": {},
+          "uncertainty": null,
+          "conditions": [],
+          "provenance": null,
+          "strength": 0.2
+        }
+      ],
+      "evidence_against": [],
+      "conditions": [
+        {
+          "condition_type": "limitation",
+          "description": "No ablation study comparing with vs without VLM feedback",
+          "formal_expression": null,
+          "is_verified": null
+        }
+      ],
+      "causal_relationships": [],
+      "related_claim_ids": [],
+      "confidence": 0.3
+    },
+    {
+      "id": "b4361fe6-6a36-4d5e-b63b-2bcdc666194f",
+      "statement": "The system surpasses AI Scientist-v1 capabilities",
+      "formal_statement": null,
+      "status": "contested",
+      "evidence_for": [
+        {
+          "id": "29361133-30d2-42f6-9cf0-a3c594a572c1",
+          "evidence_type": "observational",
+          "description": "Feature comparison showing template-free operation and tree search",
+          "data": {},
+          "uncertainty": null,
+          "conditions": [],
+          "provenance": null,
+          "strength": 0.3
+        }
+      ],
+      "evidence_against": [
+        {
+          "id": "83c61e50-382b-445a-913e-89e9c7cabbd0",
+          "evidence_type": "experimental",
+          "description": "No direct experimental comparison between v1 and v2 performance",
+          "data": {},
+          "uncertainty": null,
+          "conditions": [],
+          "provenance": null,
+          "strength": 0.7
+        }
+      ],
+      "conditions": [],
+      "causal_relationships": [],
+      "related_claim_ids": [],
+      "confidence": 0.4
+    }
+  ],
+  "causal_relationships": [
+    {
+      "cause": "tree_search_methodology",
+      "effect": "deeper_experimental_exploration",
+      "strength": "suggested",
+      "mechanism": "best-first node selection enables more systematic hypothesis testing",
+      "conditions": [
+        {
+          "condition_type": "scope",
+          "description": "no_ablation_validation",
+          "formal_expression": null,
+          "is_verified": null
+        }
+      ],
+      "evidence_ids": [],
+      "confounders": [
+        "human_selection",
+        "idea_quality"
+      ]
+    },
+    {
+      "cause": "vlm_feedback",
+      "effect": "improved_figure_quality",
+      "strength": "suggested",
+      "mechanism": "vision-language model checks figure-caption alignment and visual clarity",
+      "conditions": [
+        {
+          "condition_type": "scope",
+          "description": "no_ablation_validation",
+          "formal_expression": null,
+          "is_verified": null
+        }
+      ],
+      "evidence_ids": [],
+      "confounders": [
+        "overall_system_integration"
+      ]
+    }
+  ],
+  "ablation_results": [],
+  "failure_cases": [
+    "Label Noise Calibration paper rejected due to missing references and unclear methodology",
+    "Pest Detection paper rejected due to incomplete experimental support",
+    "System requires human selection of ideas (3 from ~40 generated)",
+    "System requires human selection of best manuscript from multiple runs"
+  ],
+  "key_findings": [
+    "First documented AI-generated paper acceptance at peer-reviewed venue (ICLR 2025 ICBINB Workshop)",
+    "33.3% success rate (1/3 papers accepted) with accepted paper scoring 6.33/10",
+    "Template-free operation enables domain-general paper generation across ML topics",
+    "Four-stage experimental pipeline (Preliminary Investigation, Hyperparameter Tuning, Research Agenda, Ablations) mirrors human research workflow",
+    "Integration of LLMs, VLMs, and tree search creates functional end-to-end research automation",
+    "Significant human selection at multiple stages (idea selection, manuscript selection) affects autonomous capability claims",
+    "Sample size of N=3 provides insufficient statistical power for methodology validation"
+  ],
+  "raw_tables": []
+}
